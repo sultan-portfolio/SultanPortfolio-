@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sultan — CX Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f7f4;
+  --bg2: #f0ede8;
+  --bg3: #e8e4dd;
+  --cobalt: #1a56db;
+  --cobalt-mid: rgba(26,86,219,0.1);
+  --cobalt-dim: rgba(26,86,219,0.05);
+  --cobalt-border: rgba(26,86,219,0.15);
+  --ink: #0d1117;
+  --ink2: #1e2230;
+  --dim: #6b7080;
+  --dim2: #9ba3b0;
+  --border: rgba(13,17,23,0.07);
+  --white: #ffffff;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--cobalt); border-radius: 2px; }
+
+/* NAV */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 10vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(248,247,244,0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.nav.scrolled { border-color: var(--border); }
+
+.nav-logo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+}
+.nav-logo span { color: var(--cobalt); }
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cobalt); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10vw;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(150deg, #ffffff 0%, #f2efe8 55%, #e9e5dc 100%);
+}
+
+.hero-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(13,17,23,0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 65% 65% at 50% 50%, black 20%, transparent 100%);
+}
+
+.geo {
+  position: absolute;
+  right: 7vw;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(400px, 36vw);
+  height: min(400px, 36vw);
+  pointer-events: none;
+  opacity: 0;
+  animation: geoIn 1.4s cubic-bezier(0.16,1,0.3,1) forwards 0.2s;
+}
+@keyframes geoIn {
+  from { opacity: 0; transform: translateY(-50%) scale(0.8) rotate(-12deg); }
+  to   { opacity: 1; transform: translateY(-50%) scale(1) rotate(0deg); }
+}
+
+.monogram {
+  position: absolute;
+  right: 7vw;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: min(160px, 14vw);
+  color: var(--ink);
+  letter-spacing: -6px;
+  line-height: 1;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.7s;
+  user-select: none;
+  z-index: 2;
+}
+.monogram span { color: var(--cobalt); }
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 540px;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--cobalt);
+  margin-bottom: 20px;
+  font-weight: 700;
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards 0.4s;
+}
+
+.hero-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(64px, 8.5vw, 116px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -4px;
+  color: var(--ink);
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards 0.55s;
+}
+
+.hero-hook {
+  margin-top: 28px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(17px, 2vw, 24px);
+  font-weight: 700;
+  color: var(--ink2);
+  line-height: 1.4;
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards 0.7s;
+}
+.hero-hook em { color: var(--cobalt); font-style: normal; }
+
+.hero-sub {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--dim);
+  line-height: 1.8;
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards 0.85s;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 0;
+  margin-top: 52px;
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards 1s;
+  flex-wrap: wrap;
+}
+.hstat {
+  padding-right: 36px;
+  margin-right: 36px;
+  border-right: 1px solid var(--border);
+}
+.hstat:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+
+.hstat-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--cobalt);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.hstat-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 44px; left: 10vw;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  animation: fadeUp 0.9s ease forwards 1.3s;
+}
+.scroll-line {
+  width: 36px; height: 1px;
+  background: var(--cobalt);
+  animation: scrl 2s ease-in-out infinite;
+}
+@keyframes scrl {
+  0%,100% { width: 36px; opacity: 1; }
+  50% { width: 16px; opacity: 0.3; }
+}
+.scroll-text {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 600;
+}
+
+/* FADE UP */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll Reveal Smooth */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.34s; }
+
+/* Add other CSS from your original code, just make sure all var(--...) are correct */
+
+</style>
+</head>
+<body>
+
+<!-- Your original HTML here -->
+<!-- Everything from <nav> to the end stays the same -->
+
+<script>
+// Smooth scroll reveal on scroll
+const revealElements = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+revealElements.forEach(el => observer.observe(el));
+
+// Add nav scrolled effect
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 20) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+</script>
+
+</body>
+</html>

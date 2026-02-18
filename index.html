@@ -718,6 +718,19 @@ body {
         padding: 32px 6vw;
       }
     }
+  .case-title-wrapper {
+  display: inline-block;       /* يخلي المربع يحيط بالعنوان فقط */
+  background: #000;            /* المربع الأسود */
+  padding: 8px 16px;           /* مسافة حول النص */
+  border-radius: 4px;          /* حواف دائرية بسيطة */
+  opacity: 0;                  /* يبدأ مخفي للـ animation */
+  transform: translateY(24px); /* نفس اتجاه fadeUp */
+  animation: fadeUp 0.9s ease forwards; /* نفس أنيميشن العنوان */
+}
+
+.case-title-wrapper .case-title {
+  color: #fff;                 /* نص أبيض */
+}
   </style>
 
 </head>

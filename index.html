@@ -8,31 +8,26 @@
   <style>
     :root {
       /* Palette */
-      --bg: #1e1e1e;
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --mauve: #a47287;
-      --mauve-dim: rgba(164, 114, 135, 0.15);
+      --bg: #FFF8E7; /* Cosmic Latte */
+      --card-bg: #FFFFFF; /* White Cards */
+      --mauve: #673147; /* Old Mauve */
+      --mauve-light: rgba(103,49,71,0.1);
       
-      --text-main: #ffffff;
-      --text-muted: #a0a0a0;
-      --text-dim: #666666;
-      --border: rgba(255, 255, 255, 0.08);
+      --ink: #1a1a1a; /* Dark gray text */
+      --ink2: #4a4a4a; /* Medium gray text */
+      --dim: #7a7a7a;
+      --border: rgba(0,0,0,0.08);
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
-      color: var(--text-main);
+      color: var(--ink);
       font-family: 'Jost', sans-serif;
+      font-weight: 400;
       overflow-x: hidden;
     }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--mauve); }
 
     /* SF Background */
     body::before {
@@ -41,7 +36,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 900;
       font-size: 80vh;
-      color: rgba(255,255,255,0.02);
+      color: rgba(103,49,71,0.02);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -54,294 +49,319 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 15px 5vw;
+      padding: 18px 10vw;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(30, 30, 30, 0.8);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(255, 248, 231, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
     }
+    .nav.scrolled { border-color: var(--border); }
 
     .nav-logo {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
-      font-size: 18px;
-      color: var(--text-main);
+      font-size: 17px;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+      text-decoration: none;
     }
     .nav-logo span { color: var(--mauve); }
 
     .nav-links {
       display: flex;
-      gap: 15px;
+      gap: 28px;
       list-style: none;
     }
     .nav-links a {
       font-size: 11px;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--dim);
       text-decoration: none;
       font-weight: 600;
-      padding: 6px 12px;
-      border-radius: 4px;
-      transition: all 0.2s;
+      transition: color 0.2s;
     }
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--bg);
-      background: var(--mauve);
-    }
+    .nav-links a:hover { color: var(--mauve); }
 
     .nav-cta {
-      background: var(--card-bg);
-      color: var(--text-main);
+      background: var(--mauve);
+      color: var(--bg);
       padding: 8px 16px;
       border-radius: 4px;
       font-size: 11px;
+      letter-spacing: 1px;
+      font-weight: 700;
       text-decoration: none;
-      border: 1px solid var(--border);
-      transition: all 0.2s;
-    }
-    .nav-cta:hover { background: var(--mauve); border-color: var(--mauve); color: var(--bg); }
-
-    /* SECTIONS */
-    .section {
-      min-height: 100vh;
-      padding: 120px 10vw 80px;
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     /* HERO */
-    .hero-eyebrow { color: var(--mauve); font-size: 12px; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; }
-    .hero-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(60px, 8vw, 100px); font-weight: 800; color: var(--text-main); line-height: 0.9; margin-bottom: 20px; }
-    .hero-hook { font-size: clamp(20px, 2.5vw, 32px); color: var(--text-main); font-weight: 600; margin-bottom: 20px; }
-    .hero-hook em { color: var(--mauve); font-style: normal; font-weight: 800; }
-    .hero-sub { color: var(--text-muted); font-size: 18px; max-width: 600px; }
-
-    /* CASES */
-    .case-title-area { margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
-    .case-meta { color: var(--mauve); font-size: 12px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; margin-bottom: 10px; }
-    .case-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(30px, 4vw, 48px); font-weight: 800; color: var(--text-main); }
-    
-    .case-grid-stacked { display: flex; flex-direction: column; gap: 30px; }
-    
-    .col { background: var(--card-bg); padding: 40px; border-radius: 12px; border: 1px solid var(--border); }
-    .col-label { color: var(--mauve); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
-    
-    .item-list { display: flex; flex-direction: column; gap: 15px; }
-    .item { color: var(--text-muted); font-size: 15px; line-height: 1.7; display: flex; align-items: flex-start; gap: 10px; }
-    .item-title { color: var(--text-main); font-weight: 700; display: block; margin-bottom: 4px; }
-    .item-arrow { color: var(--mauve); font-weight: bold; margin-right: 6px; }
-
-    .principle-box { background: var(--mauve); color: var(--bg); padding: 25px; border-radius: 8px; text-align: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 17px; font-weight: 600; margin-top: 30px; }
-    .principle-box em { font-weight: 800; font-style: normal; }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .nav-links { display: none; }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 10vw;
+      position: relative;
+      z-index: 1;
     }
-    @media (max-width: 600px) {
-      .section { padding: 100px 6vw 50px; }
-      .col { padding: 20px; }
+
+    .hero-content { max-width: 700px; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--mauve); margin-bottom: 20px; font-weight: 700; }
+    .hero-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(64px, 8.5vw, 116px); font-weight: 800; line-height: 0.9; letter-spacing: -4px; color: var(--ink); margin-bottom: 20px;}
+    .hero-hook { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(20px, 2.5vw, 32px); font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 20px; }
+    .hero-hook em { color: var(--mauve); font-style: normal; }
+    .hero-sub { font-size: 16px; color: var(--ink2); line-height: 1.6; font-weight: 400; }
+
+    /* RESULTS SECTION (Clickable) */
+    .results-section { padding: 80px 10vw; }
+    .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+    
+    .r-card {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: all 0.2s ease;
+    }
+    .r-card:hover {
+      border-color: var(--mauve-light);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(103,49,71,0.05);
+    }
+    .r-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 40px; font-weight: 800; color: var(--mauve); line-height: 1; margin-bottom: 10px; }
+    .r-label { font-size: 14px; color: var(--ink2); font-weight: 500; }
+    .r-company { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--mauve); font-weight: 700; margin-top: 15px; display: block; }
+
+    /* TIMELINE / CASES */
+    .cases-container { padding: 40px 10vw; }
+    .case { background: var(--card-bg); padding: 40px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 30px; }
+    
+    .case-header { margin-bottom: 30px; }
+    .case-company { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--mauve); font-weight: 700; margin-bottom: 5px; }
+    .case-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 32px; font-weight: 800; color: var(--ink); line-height: 1.1; }
+
+    .case-grid-stacked { display: flex; flex-direction: column; gap: 20px; }
+    .col { background: #FDF9F2; padding: 25px; border-radius: 8px; }
+    .col-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--mauve); font-weight: 700; margin-bottom: 15px; }
+    
+    .item { font-size: 14px; color: var(--ink2); line-height: 1.6; margin-bottom: 10px; display: flex; gap: 8px; }
+    .item-title { font-weight: 700; color: var(--ink); }
+    .item-arrow { color: var(--mauve); }
+
+    .principle-box { background: var(--mauve); color: var(--bg); padding: 20px; border-radius: 8px; text-align: center; font-weight: 600; margin-top: 10px; }
+    
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .r-card { padding: 20px; }
     }
   </style>
 </head>
 <body>
 
   <nav class="nav" id="mainNav">
-    <div class="nav-logo">S<span>.</span>F</div>
+    <a href="#" class="nav-logo">S<span>.</span>F</a>
     <ul class="nav-links">
-      <li><a href="#amazon">Amazon</a></li>
-      <li><a href="#zid">Zid</a></li>
       <li><a href="#alaan">Alaan</a></li>
+      <li><a href="#zid">Zid</a></li>
+      <li><a href="#amazon">Amazon</a></li>
       <li><a href="#lg">LG</a></li>
+      <li><a href="#mcdonalds">McDonald's</a></li>
       <li><a href="#justtaco">Just Taco</a></li>
     </ul>
     <a href="mailto:sultanfq.career@gmail.com" class="nav-cta">Connect</a>
   </nav>
 
-  <section class="section" id="home">
-    <p class="hero-eyebrow">Strategy Portfolio</p>
-    <h1 class="hero-name">Sultan</h1>
-    <p class="hero-hook">Want to see problems flip into <em>opportunities?</em></p>
-    <p class="hero-sub">FinTech, eCommerce, Consumer Tech & F&B — KSA and beyond. Choose a case study from the navigation above.</p>
-  </section>
-
-  <section class="section" id="amazon">
-    <div class="case-title-area">
-      <div class="case-meta">01 — Amazon · Global Ops · KSA</div>
-      <h2 class="case-title">Moving the Unmovable</h2>
-    </div>
-    <div class="case-grid-stacked">
-      <div class="col">
-        <div class="col-label">Context</div>
-        <div class="item-list">
-          <div class="item"><span>Morale tanking silently across the floor.</span></div>
-          <div class="item"><span>Dense guides customers weren't reading — tickets piling up.</span></div>
-          <div class="item"><span>Floor-level suggestions buried before reaching leadership.</span></div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="col-label">Intervention</div>
-        <div class="item-list">
-          <div class="item"><div><span class="item-title">Killed The Guides →</span> Replaced dense docs with short instructional videos. Customers stopped needing support for common issues.</div></div>
-          <div class="item"><div><span class="item-title">RCA Workshops →</span> Ran root cause analysis on the floor. Exposed systemic defects, gave teams a structural language for problems.</div></div>
-          <div class="item"><div><span class="item-title">Built a Proactive Playbook →</span> Mapped defect trends across high-impact SKUs. Teams could intervene before issues reached customers.</div></div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="col-label">Outcome</div>
-        <div class="item-list">
-          <div class="item"><span>−25% issue resolution time post-RCA workshops.</span></div>
-          <div class="item"><span>2 out of 2 proposals — both approved and shipped.</span></div>
-          <div class="item"><span>Team morale visibly shifted across the floor.</span></div>
-        </div>
-      </div>
-      <div class="principle-box">"If people won't read, <em>build experiences they don't need to read.</em>"</div>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Strategy Case Studies</p>
+      <h1 class="hero-name">Sultan</h1>
+      <p class="hero-hook">Want to see problems flip into <em>opportunities?</em></p>
+      <p class="hero-sub">Check the impact I left behind at companies below, then click them to view the intervention details.</p>
     </div>
   </section>
 
-  <section class="section" id="zid">
-    <div class="case-title-area">
-      <div class="case-meta">02 — Zid Platform · eCommerce · KSA</div>
-      <h2 class="case-title">Finding Where Friction Hides</h2>
-    </div>
-    <div class="case-grid-stacked">
-      <div class="col">
-        <div class="col-label">Context</div>
-        <div class="item-list">
-          <div class="item"><span>Merchants churning without a clear reason why.</span></div>
-          <div class="item"><span>Pain points not showing in reports — the silence was the problem.</span></div>
-          <div class="item"><span>Support overwhelmed but nobody could pinpoint the source.</span></div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="col-label">Intervention</div>
-        <div class="item-list">
-          <div class="item"><div><span class="item-title">Mapped The Journey →</span> Used journey heatmaps and thematic VOC analysis to expose friction nobody was tracking.</div></div>
-          <div class="item"><div><span class="item-title">Unlocked Amazon Integration →</span> Identified it as the highest-impact move for merchant sales and NPS. Pushed it forward fast.</div></div>
-          <div class="item"><div><span class="item-title">Rebuilt Escalation Architecture →</span> Replaced a reactive system with structured escalation models built on merchant behavior patterns.</div></div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="col-label">Outcome</div>
-        <div class="item-list">
-          <div class="item"><span>−17% merchant churn in under 45 days.</span></div>
-          <div class="item"><span>NPS uplift following Amazon integration rollout.</span></div>
-          <div class="item"><span>Support shifted from reactive firefighting to predictive intervention.</span></div>
-        </div>
-      </div>
-      <div class="principle-box">"I look where friction hides — <em>in silence, not just in complaints.</em>"</div>
+  <section class="results-section">
+    <div class="results-grid">
+      <a href="#alaan" class="r-card">
+        <div class="r-num">100%</div>
+        <div class="r-label">Card Activation</div>
+        <div class="r-company">Alaan Pay</div>
+      </a>
+      <a href="#justtaco" class="r-card">
+        <div class="r-num">400%</div>
+        <div class="r-label">Revenue Growth</div>
+        <div class="r-company">Just Taco</div>
+      </a>
+      <a href="#zid" class="r-card">
+        <div class="r-num">−17%</div>
+        <div class="r-label">Merchant Churn</div>
+        <div class="r-company">Zid Platform</div>
+      </a>
+      <a href="#amazon" class="r-card">
+        <div class="r-num">−25%</div>
+        <div class="r-label">Issue Resolution Time</div>
+        <div class="r-company">Amazon</div>
+      </a>
     </div>
   </section>
 
-  <section class="section" id="alaan">
-    <div class="case-title-area">
-      <div class="case-meta">03 — Alaan Pay · FinTech · KSA</div>
-      <h2 class="case-title">From Chaos to Loyal Clients</h2>
+  <div class="cases-container">
+    
+    <div class="case" id="alaan">
+      <div class="case-header">
+        <div class="case-company">Alaan Pay · FinTech · KSA</div>
+        <h2 class="case-title">From Chaos to Loyal Clients</h2>
+      </div>
+      <div class="case-grid-stacked">
+        <div class="col">
+          <div class="col-label">Context</div>
+          <div class="item">The only Saudi on ground during market launch.</div>
+          <div class="item">Competitors systematically targeting our warm leads.</div>
+          <div class="item">Clients going cold during the last step of onboarding.</div>
+        </div>
+        <div class="col">
+          <div class="col-label">Intervention</div>
+          <div class="item"><div><span class="item-title">Emergency Declared</span> <span class="item-arrow">→</span> Invited Sales, Marketing, Ops, and Product to an urgent all-hands.</div></div>
+          <div class="item"><div><span class="item-title">Localized Details</span> <span class="item-arrow">→</span> Embedded Saudi Riyal symbol — first fintech to do it.</div></div>
+          <div class="item"><div><span class="item-title">Card Delivery Experience</span> <span class="item-arrow">→</span> Automated WhatsApp notifications on delivery.</div></div>
+        </div>
+        <div class="col">
+          <div class="col-label">Outcome</div>
+          <div class="item">100% card activation post-automation.</div>
+          <div class="item">57% of targeted leads converted to loyal clients.</div>
+        </div>
+        <div class="principle-box">"When stakes are high and clarity is low — <em>I thrive.</em>"</div>
+      </div>
     </div>
-    <div class="case-grid-stacked">
-      <div class="col">
-        <div class="col-label">Context</div>
-        <div class="item-list">
-          <div class="item"><span>The only Saudi on ground during market launch.</span></div>
-          <div class="item"><span>Competitors systematically targeting our warm leads.</span></div>
-          <div class="item"><span>Clients going cold during the last step of onboarding.</span></div>
-          <div class="item"><span>The success of expansion hinged on the quality of customer experience.</span></div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="col-label">Intervention</div>
-        <div class="item-list">
-          <div class="item"><div><span class="item-title">Emergency Declared →</span> Invited Sales, Marketing, Ops, and Product to an urgent all-hands. Aligned team to boost performance.</div></div>
-          <div class="item"><div><span class="item-title">Localized Details →</span> Embedded Saudi Riyal symbol — first fintech to do it. Instant trust.</div></div>
-          <div class="item"><div><span class="item-title">Data Warfare →</span> Identified competitor weaknesses in positioning, onboarding, and features. Turned their weaknesses into our advantage.</div></div>
-          <div class="item"><div><span class="item-title">Card Delivery Experience →</span> Automated WhatsApp notifications on delivery. Direct activation link. Zero friction.</div></div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="col-label">Outcome</div>
-        <div class="item-list">
-          <div class="item"><span>100% card activation post-automation — from broken process to flawless launch.</span></div>
-          <div class="item"><span>57% of targeted leads converted to loyal clients.</span></div>
-          <div class="item"><span>CEO and GM recognized my ability to bring order to ambiguity as a strategic lever.</span></div>
-        </div>
-      </div>
-      <div class="principle-box">"When stakes are high and clarity is low — <em>I thrive.</em>"</div>
-    </div>
-  </section>
 
-  <section class="section" id="lg">
-    <div class="case-title-area">
-      <div class="case-meta">04 — LG Electronics · Consumer Tech · KSA</div>
-      <h2 class="case-title">Numbers Speak Louder Than Hesitation</h2>
+    <div class="case" id="zid">
+      <div class="case-header">
+        <div class="case-company">Zid Platform · eCommerce · KSA</div>
+        <h2 class="case-title">Finding Where Friction Hides</h2>
+      </div>
+      <div class="case-grid-stacked">
+        <div class="col">
+          <div class="col-label">Context</div>
+          <div class="item">Merchants churning without a clear reason why.</div>
+          <div class="item">Pain points not showing in reports — the silence was the problem.</div>
+        </div>
+        <div class="col">
+          <div class="col-label">Intervention</div>
+          <div class="item"><div><span class="item-title">Unlocked Amazon Integration</span> <span class="item-arrow">→</span> Identified it as highest-impact move for sales and NPS.</div></div>
+          <div class="item"><div><span class="item-title">Rebuilt Escalation Architecture</span> <span class="item-arrow">→</span> Replaced reactive system with behavior-pattern models.</div></div>
+        </div>
+        <div class="col">
+          <div class="col-label">Outcome</div>
+          <div class="item">−17% merchant churn in under 45 days.</div>
+        </div>
+        <div class="principle-box">"I look where friction hides — <em>in silence, not just in complaints.</em>"</div>
+      </div>
     </div>
-    <div class="case-grid-stacked">
-      <div class="col">
-        <div class="col-label">Context</div>
-        <div class="item-list">
-          <div class="item"><span>High operational costs, uncertain market appetite.</span></div>
-          <div class="item"><span>Product teams stuck in indecision — no localized data to justify the launch.</span></div>
-          <div class="item"><span>A product with real potential sitting in limbo.</span></div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="col-label">Intervention</div>
-        <div class="item-list">
-          <div class="item"><div><span class="item-title">Market Dashboard →</span> Mapped regional demand potential vs operational investment. Turned hesitation into a structured decision.</div></div>
-          <div class="item"><div><span class="item-title">Deep KSA Context →</span> Integrated demographic fit, purchasing behavior, and smart home adoption.</div></div>
-          <div class="item"><div><span class="item-title">Supply Chain Link →</span> Bridged customer interest signals into inventory and logistics planning.</div></div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="col-label">Outcome</div>
-        <div class="item-list">
-          <div class="item"><span>Launch greenlit — hesitation replaced by data-backed confidence.</span></div>
-          <div class="item"><span>Dashboard confirmed KSA was the perfect market for the product.</span></div>
-          <div class="item"><span>Known as the person who weaponizes insight into decisions.</span></div>
-        </div>
-      </div>
-      <div class="principle-box">"CX doesn't stop at satisfaction scores — <em>it drives what lands on the shelf.</em>"</div>
-    </div>
-  </section>
 
-  <section class="section" id="justtaco">
-    <div class="case-title-area">
-      <div class="case-meta">05 — Just Taco · F&B · KSA · Pro Bono</div>
-      <h2 class="case-title">Free Work. 400% Growth. No Apologies.</h2>
+    <div class="case" id="amazon">
+      <div class="case-header">
+        <div class="case-company">Amazon · Global Ops · KSA</div>
+        <h2 class="case-title">Moving the Unmovable</h2>
+      </div>
+      <div class="case-grid-stacked">
+        <div class="col">
+          <div class="col-label">Context</div>
+          <div class="item">Morale tanking silently across the floor.</div>
+          <div class="item">Dense guides customers weren't reading.</div>
+        </div>
+        <div class="col">
+          <div class="col-label">Intervention</div>
+          <div class="item"><div><span class="item-title">Killed The Guides</span> <span class="item-arrow">→</span> Replaced dense docs with short instructional videos.</div></div>
+          <div class="item"><div><span class="item-title">RCA Workshops</span> <span class="item-arrow">→</span> Ran root cause analysis on the floor.</div></div>
+        </div>
+        <div class="col">
+          <div class="col-label">Outcome</div>
+          <div class="item">−25% issue resolution time post-RCA workshops.</div>
+        </div>
+        <div class="principle-box">"If people won't read, <em>build experiences they don't need to read.</em>"</div>
+      </div>
     </div>
-    <div class="case-grid-stacked">
-      <div class="col">
-        <div class="col-label">Context</div>
-        <div class="item-list">
-          <div class="item"><span>Small local brand stuck at 8K SAR daily revenue.</span></div>
-          <div class="item"><span>Invisible on social. No budget. No strategy.</span></div>
-          <div class="item"><span>No contract. No fees. Just belief.</span></div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="col-label">Intervention</div>
-        <div class="item-list">
-          <div class="item"><div><span class="item-title">Reframed Product →</span> Stopped selling a taco. Started selling an identity. Gave the brand cultural personality.</div></div>
-          <div class="item"><div><span class="item-title">Zero-Budget UGC Campaign →</span> Built content strategy around storytelling, humor, and street-level intimacy.</div></div>
-          <div class="item"><div><span class="item-title">Built Community →</span> Engineered advocates who made the brand part of their personal identity.</div></div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="col-label">Outcome</div>
-        <div class="item-list">
-          <div class="item"><span>400% revenue growth — 8K SAR to 46K SAR daily.</span></div>
-          <div class="item"><span>Brand became a local legend with sustained organic engagement.</span></div>
-          <div class="item"><span>Zero budget. Full results.</span></div>
-        </div>
-      </div>
-      <div class="principle-box">"I don't need a contract to deliver excellence. <em>If I believe — I go all in.</em>"</div>
-    </div>
-  </section>
 
+    <div class="case" id="lg">
+      <div class="case-header">
+        <div class="case-company">LG Electronics · Consumer Tech · KSA</div>
+        <h2 class="case-title">When Numbers Speak Louder Than Hesitation</h2>
+      </div>
+      <div class="case-grid-stacked">
+        <div class="col">
+          <div class="col-label">Context</div>
+          <div class="item">High operational costs, uncertain market appetite.</div>
+          <div class="item">Product teams stuck in indecision.</div>
+        </div>
+        <div class="col">
+          <div class="col-label">Intervention</div>
+          <div class="item"><div><span class="item-title">Market-Sensing Dashboard</span> <span class="item-arrow">→</span> Mapped demand potential vs operational investment.</div></div>
+        </div>
+        <div class="col">
+          <div class="col-label">Outcome</div>
+          <div class="item">Launch greenlit — hesitation replaced by data-backed confidence.</div>
+        </div>
+        <div class="principle-box">"CX doesn't stop at satisfaction scores — <em>it drives what lands on the shelf.</em>"</div>
+      </div>
+    </div>
+
+    <div class="case" id="mcdonalds">
+      <div class="case-header">
+        <div class="case-company">McDonald's USA · Operations · Part-Time</div>
+        <h2 class="case-title">Systems Thinking at 18</h2>
+      </div>
+      <div class="case-grid-stacked">
+        <div class="col">
+          <div class="col-label">Context</div>
+          <div class="item">KPIs looked green. Metrics were fine. Something was still off.</div>
+        </div>
+        <div class="col">
+          <div class="col-label">Intervention</div>
+          <div class="item"><div><span class="item-title">Skills-Mapping Matrix</span> <span class="item-arrow">→</span> Designed routing system matching call types to specialist strengths.</div></div>
+        </div>
+        <div class="col">
+          <div class="col-label">Outcome</div>
+          <div class="item">Customer satisfaction rose post-implementation.</div>
+        </div>
+        <div class="principle-box">"I don't need permission to fix what's broken. <em>I see it, I act, I improve.</em>"</div>
+      </div>
+    </div>
+
+    <div class="case" id="justtaco">
+      <div class="case-header">
+        <div class="case-company">Just Taco · F&B · KSA · Pro Bono</div>
+        <h2 class="case-title">Free Work. 400% Growth. No Apologies.</h2>
+      </div>
+      <div class="case-grid-stacked">
+        <div class="col">
+          <div class="col-label">Context</div>
+          <div class="item">Small local brand stuck at 8K SAR daily revenue.</div>
+          <div class="item">Invisible on social. No budget.</div>
+        </div>
+        <div class="col">
+          <div class="col-label">Intervention</div>
+          <div class="item"><div><span class="item-title">Reframed The Product</span> <span class="item-arrow">→</span> Stopped selling a taco. Started selling an identity.</div></div>
+          <div class="item"><div><span class="item-title">Zero-Budget Campaign</span> <span class="item-arrow">→</span> Built content strategy around storytelling and intimacy.</div></div>
+        </div>
+        <div class="col">
+          <div class="col-label">Outcome</div>
+          <div class="item">400% revenue growth — 8K SAR to 46K SAR daily.</div>
+        </div>
+        <div class="principle-box">"I don't need a contract to deliver excellence. <em>If I believe — I go all in.</em>"</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50));
+  </script>
 </body>
 </html>

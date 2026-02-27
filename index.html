@@ -11,10 +11,13 @@
       --bg: #f8f7f4;
       --bg2: #f0ede8;
       --bg3: #e8e4dd;
-      --cobalt: #1a56db;
-      --cobalt-mid: rgba(26, 86, 219, 0.1);
-      --cobalt-dim: rgba(26, 86, 219, 0.05);
-      --cobalt-border: rgba(26, 86, 219, 0.15);
+      
+      /* Updated Primary Color: Old Mauve */
+      --primary: #673147; 
+      --primary-mid: rgba(103, 49, 71, 0.1);
+      --primary-dim: rgba(103, 49, 71, 0.05);
+      --primary-border: rgba(103, 49, 71, 0.15);
+      
       --ink: #0d1117;
       --ink2: #1e2230;
       --dim: #6b7080;
@@ -36,7 +39,7 @@
 
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--cobalt); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 2px; }
 
     /* NAV */
     .nav {
@@ -61,7 +64,7 @@
       color: var(--ink);
       letter-spacing: -0.5px;
     }
-    .nav-logo span { color: var(--cobalt); }
+    .nav-logo span { color: var(--primary); }
 
     .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a {
@@ -73,7 +76,7 @@
       font-weight: 600;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--cobalt); }
+    .nav-links a:hover { color: var(--primary); }
 
     /* HERO */
     .hero {
@@ -128,14 +131,14 @@
       user-select: none;
       z-index: 2;
     }
-    .monogram span { color: var(--cobalt); }
+    .monogram span { color: var(--primary); }
 
-    .hero-content { position: relative; z-index: 3; max-width: 540px; }
+    .hero-content { position: relative; z-index: 3; max-width: 600px; }
     .hero-eyebrow {
       font-size: 11px;
       letter-spacing: 5px;
       text-transform: uppercase;
-      color: var(--cobalt);
+      color: var(--primary);
       margin-bottom: 20px;
       font-weight: 700;
       opacity: 0;
@@ -161,7 +164,7 @@
       opacity: 0;
       animation: fadeUp 0.9s ease forwards 0.7s;
     }
-    .hero-hook em { color: var(--cobalt); font-style: normal; }
+    .hero-hook em { color: var(--primary); font-style: normal; }
     .hero-sub {
       margin-top: 14px;
       font-size: 14px;
@@ -171,12 +174,50 @@
       opacity: 0;
       animation: fadeUp 0.9s ease forwards 0.85s;
     }
+    
+    /* CTA Buttons */
+    .hero-cta {
+      margin-top: 32px;
+      display: flex;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 1s;
+      flex-wrap: wrap;
+    }
+    .cta-btn {
+      padding: 10px 18px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cta-btn svg { width: 16px; height: 16px; }
+    
+    .cta-btn.primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .cta-btn.primary:hover { background: var(--ink); }
+    
+    .cta-btn.secondary {
+      background: var(--bg2);
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+    .cta-btn.secondary:hover { background: var(--bg3); }
+
     .hero-stats {
       display: flex;
       gap: 0;
       margin-top: 52px;
       opacity: 0;
-      animation: fadeUp 0.9s ease forwards 1s;
+      animation: fadeUp 0.9s ease forwards 1.1s;
       flex-wrap: wrap;
     }
     .hstat {
@@ -189,7 +230,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 34px;
       font-weight: 800;
-      color: var(--cobalt);
+      color: var(--primary);
       line-height: 1;
       letter-spacing: -1px;
     }
@@ -214,7 +255,7 @@
     .scroll-line {
       width: 36px;
       height: 1px;
-      background: var(--cobalt);
+      background: var(--primary);
       animation: scrl 2s ease-in-out infinite;
     }
     @keyframes scrl {
@@ -238,7 +279,7 @@
       top: 0;
       bottom: 0;
       width: 1px;
-      background: linear-gradient(to bottom, transparent, var(--cobalt-border) 8%, var(--cobalt-border) 92%, transparent);
+      background: linear-gradient(to bottom, transparent, var(--primary-border) 8%, var(--primary-border) 92%, transparent);
     }
 
     /* CASE */
@@ -252,17 +293,17 @@
       height: 10px;
       border-radius: 50%;
       background: var(--bg);
-      border: 2px solid var(--cobalt-border);
+      border: 2px solid var(--primary-border);
       transition: all 0.4s ease;
     }
     .case.active::before {
-      border-color: var(--cobalt);
-      background: var(--cobalt);
-      box-shadow: 0 0 0 5px var(--cobalt-dim);
+      border-color: var(--primary);
+      background: var(--primary);
+      box-shadow: 0 0 0 5px var(--primary-dim);
     }
     .case-divider {
       height: 1px;
-      background: linear-gradient(to right, var(--cobalt-border) 0%, transparent 80%);
+      background: linear-gradient(to right, var(--primary-border) 0%, transparent 80%);
       margin-left: 64px;
     }
     .case-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 44px; }
@@ -270,7 +311,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 12px;
       font-weight: 700;
-      color: var(--cobalt);
+      color: var(--primary);
       letter-spacing: 3px;
       margin-top: 7px;
       white-space: nowrap;
@@ -303,11 +344,11 @@
       font-size: 10px;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--cobalt);
+      color: var(--primary);
       font-weight: 700;
       margin-bottom: 18px;
       padding-bottom: 12px;
-      border-bottom: 1px solid var(--cobalt-border);
+      border-bottom: 1px solid var(--primary-border);
     }
     .ctx-item {
       display: flex;
@@ -319,7 +360,6 @@
       align-items: flex-start;
     }
     .ctx-item:last-child { margin-bottom: 0; }
-    .ctx-emoji { font-size: 14px; flex-shrink: 0; margin-top: 2px; }
     .int-col { background: var(--bg2); }
     .int-item {
       display: flex;
@@ -330,7 +370,6 @@
     }
     .int-item:first-child { padding-top: 0; }
     .int-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .int-emoji { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
     .int-text { font-size: 13px; line-height: 1.75; color: var(--ink2); }
     .int-title {
       font-weight: 700;
@@ -338,10 +377,9 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 12.5px;
     }
-    .int-arrow { color: var(--cobalt); font-weight: 700; margin: 0 4px; }
+    .int-arrow { color: var(--primary); font-weight: 700; margin: 0 4px; }
     .out-item { display: flex; gap: 10px; margin-bottom: 13px; align-items: flex-start; }
     .out-item:last-child { margin-bottom: 0; }
-    .out-emoji { font-size: 14px; flex-shrink: 0; margin-top: 2px; }
     .out-text { font-size: 12.5px; line-height: 1.7; color: var(--ink2); }
     .principle {
       grid-column: 1 / -1;
@@ -363,9 +401,9 @@
       top: 0;
       bottom: 0;
       width: 3px;
-      background: var(--cobalt);
+      background: var(--primary);
     }
-    .principle em { color: var(--cobalt); font-style: normal; }
+    .principle em { color: var(--primary); font-style: normal; }
 
     /* RESULTS */
     .results-section {
@@ -376,7 +414,7 @@
       font-size: 11px;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--cobalt);
+      color: var(--primary);
       font-weight: 700;
       margin-bottom: 10px;
     }
@@ -389,7 +427,7 @@
       line-height: 1;
       margin-bottom: 48px;
     }
-    .results-title span { color: var(--cobalt); }
+    .results-title span { color: var(--primary); }
     .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
     .r-cell {
       background: var(--white);
@@ -406,12 +444,12 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--cobalt);
+      background: var(--primary);
       transition: width 0.4s ease;
     }
     .r-cell:hover { background: var(--bg2); }
     .r-cell:hover::after { width: 100%; }
-    .r-cell:hover .r-num { color: var(--cobalt); }
+    .r-cell:hover .r-num { color: var(--primary); }
     .r-num {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 46px;
@@ -426,7 +464,7 @@
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--cobalt);
+      color: var(--primary);
       margin-top: 6px;
       font-weight: 600;
       opacity: 0.6;
@@ -448,7 +486,29 @@
       color: var(--ink);
       letter-spacing: -0.5px;
     }
-    .footer-brand span { color: var(--cobalt); }
+    .footer-brand span { color: var(--primary); }
+    
+    /* Footer Contact Info */
+    .footer-contact {
+      display: flex;
+      gap: 20px;
+      font-size: 12px;
+      color: var(--dim);
+      align-items: center;
+    }
+    .footer-contact a {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-contact a:hover { color: var(--primary); }
+    .footer-contact svg { width: 14px; height: 14px; fill: var(--dim); transition: fill 0.2s; }
+    .footer-contact a:hover svg { fill: var(--primary); }
+
     .footer-tag { font-size: 12px; color: var(--dim); font-weight: 500; }
 
     /* REVEAL */
@@ -479,13 +539,15 @@
       .case::before { display: none; }
       .case-divider { margin-left: 0; }
       .nav-links { display: none; }
+      .hero-cta { justify-content: center; }
     }
     @media (max-width: 600px) {
       .hero, .timeline, .results-section { padding-left: 6vw; padding-right: 6vw; }
       .results-grid { grid-template-columns: 1fr; }
       .hero-stats { flex-direction: column; gap: 16px; }
       .hstat { border-right: none; padding-right: 0; margin-right: 0; }
-      footer { flex-direction: column; gap: 10px; text-align: center; padding: 32px 6vw; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 6vw; }
+      .footer-contact { flex-direction: column; gap: 8px; }
     }
   </style>
 </head>
@@ -508,14 +570,14 @@
     <div class="hero-dots"></div>
     <div class="geo">
       <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="200" cy="200" r="192" stroke="rgba(26, 86, 219, 0.07)" stroke-width="1" />
-        <circle cx="200" cy="200" r="148" stroke="rgba(26, 86, 219, 0.05)" stroke-width="1" />
-        <polygon points="200,18 374,308 26,308" stroke="rgba(26, 86, 219, 0.1)" stroke-width="1" fill="rgba(26, 86, 219, 0.025)" />
-        <rect x="76" y="76" width="248" height="248" stroke="rgba(26, 86, 219, 0.07)" stroke-width="1" fill="none" transform="rotate(15 200 200)" />
-        <rect x="108" y="108" width="184" height="184" stroke="rgba(26, 86, 219, 0.09)" stroke-width="1.5" fill="rgba(26, 86, 219, 0.02)" transform="rotate(30 200 200)" />
-        <circle cx="200" cy="200" r="6" fill="rgba(26, 86, 219, 0.25)" />
-        <line x1="200" y1="4" x2="200" y2="396" stroke="rgba(26, 86, 219, 0.04)" stroke-width="1" />
-        <line x1="4" y1="200" x2="396" y2="200" stroke="rgba(26, 86, 219, 0.04)" stroke-width="1" />
+        <circle cx="200" cy="200" r="192" stroke="rgba(103, 49, 71, 0.07)" stroke-width="1" />
+        <circle cx="200" cy="200" r="148" stroke="rgba(103, 49, 71, 0.05)" stroke-width="1" />
+        <polygon points="200,18 374,308 26,308" stroke="rgba(103, 49, 71, 0.1)" stroke-width="1" fill="rgba(103, 49, 71, 0.025)" />
+        <rect x="76" y="76" width="248" height="248" stroke="rgba(103, 49, 71, 0.07)" stroke-width="1" fill="none" transform="rotate(15 200 200)" />
+        <rect x="108" y="108" width="184" height="184" stroke="rgba(103, 49, 71, 0.09)" stroke-width="1.5" fill="rgba(103, 49, 71, 0.02)" transform="rotate(30 200 200)" />
+        <circle cx="200" cy="200" r="6" fill="rgba(103, 49, 71, 0.25)" />
+        <line x1="200" y1="4" x2="200" y2="396" stroke="rgba(103, 49, 71, 0.04)" stroke-width="1" />
+        <line x1="4" y1="200" x2="396" y2="200" stroke="rgba(103, 49, 71, 0.04)" stroke-width="1" />
       </svg>
     </div>
     <div class="monogram">S<span>F</span></div>
@@ -524,6 +586,19 @@
       <h1 class="hero-name">Sultan</h1>
       <p class="hero-hook">Want to see problems<br>flip into <em>opportunities?</em></p>
       <p class="hero-sub">FinTech, eCommerce, Consumer Tech & F&B — KSA and beyond.</p>
+      
+      <div class="hero-cta">
+        <a href="https://wa.me/966599061969" class="cta-btn primary" target="_blank">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a5.47 5.47 0 0 1-2.776-.76l-.199-.118-2.067.542.551-2.012-.13-.203a5.53 5.53 0 0 1-.852-2.923c0-3.041 2.476-5.517 5.518-5.517 1.472 0 2.856.574 3.896 1.616 1.041 1.042 1.614 2.427 1.614 3.899 0 3.042-2.475 5.518-5.517 5.518m4.93-12.756c-1.354-1.354-3.155-2.099-5.072-2.099-3.956 0-7.171 3.214-7.172 7.172 0 1.264.332 2.498.963 3.582L3 21l4.577-1.201a7.12 7.12 0 0 0 3.42.871h.003c3.956 0 7.171-3.214 7.172-7.172.001-1.917-.745-3.718-2.099-5.072"/></svg>
+          WhatsApp Me
+        </a>
+        <a href="mailto:sultanfq.career@gmail.com" class="cta-btn secondary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email Me
+        </a>
+        <a href="tel:+966599061969" class="cta-btn secondary">Call Me</a>
+      </div>
+      
       <div class="hero-stats">
         <div class="hstat">
           <div class="hstat-num">100%</div>
@@ -550,283 +625,25 @@
   </section>
 
   <div class="timeline">
-    <div class="case" id="s1" data-case>
-      <div class="case-title-wrapper reveal reveal-d4">
-        <div class="case-title">From Chaos to Loyal Clients</div>
-      </div>
-      <div>
-        <div class="case-company">Alaan Pay · FinTech · KSA</div>
-      </div>
-      <div class="case-grid">
-        <div class="col reveal reveal-d1">
-          <div class="col-label">Context</div>
-          <div class="ctx-item"><span>The only Saudi on ground during market launch.</span></div>
-          <div class="ctx-item"><span>Competitors systematically targeting our warm leads.</span></div>
-          <div class="ctx-item"><span>Clients going cold during the last step of onboarding.</span></div>
-          <div class="ctx-item"><span>The success of expansion hinged on the quality of customer experience.</span></div>
-        </div>
-        <div class="col int-col reveal reveal-d2">
-          <div class="col-label">Intervention</div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Emergency Declared</span><span class="int-arrow">→</span>Invited Sales, Marketing, Ops, and Product to an urgent all-hands. Aligned team to boost performance.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Localized Little Details</span><span class="int-arrow">→</span>Embedded Saudi Riyal symbol — first fintech to do it. Instant trust and local relevance.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Removed Barriers</span><span class="int-arrow">→</span>Mapped friction in onboarding, collabed with Ops to automate gaps. Smoother, faster delivery.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Data Warfare</span><span class="int-arrow">→</span>Identified competitor weaknesses in positioning, onboarding, and features. Turned their weaknesses into our advantage.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Tilted The Balance</span><span class="int-arrow">→</span>Turned insights into a campaign that set us apart. Highlighted our exclusive features as Saudi's leading fintech.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Bold Impactful Initiative</span><span class="int-arrow">→</span>Sent doughnuts & coffee to inactive leads with a note — "still not using our software, you probably need this." Immediate attention and viral engagement.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Card Delivery Experience</span><span class="int-arrow">→</span>Automated WhatsApp notifications on delivery. Direct activation link + smart barcodes on packaging. Zero friction between received and activated.</div>
-          </div>
-        </div>
-        <div class="col reveal reveal-d3">
-          <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">100% card activation post-automation — from broken process to flawless launch.</span></div>
-          <div class="out-item"><span class="out-text">WhatsApp automation deployed in under two weeks.</span></div>
-          <div class="out-item"><span class="out-text">57% of targeted leads converted to loyal clients.</span></div>
-          <div class="out-item"><span class="out-text">Simultaneous victories: onboarding, competitor displacement, brand trust.</span></div>
-          <div class="out-item"><span class="out-text">Viral social proof: unpaid LinkedIn posts amplified brand organically.</span></div>
-          <div class="out-item"><span class="out-text">CEO and GM recognized my ability to bring order to ambiguity as a strategic lever.</span></div>
-        </div>
-        <div class="principle reveal reveal-d4">"When stakes are high and clarity is low — <em>I thrive.</em>"</div>
-      </div>
     </div>
-    <div class="case-divider"></div>
-    <div class="case" id="s2" data-case>
-      <div class="case-header reveal">
-        <div class="case-num">02 —</div>
-        <div>
-          <div class="case-company">Zid Platform · eCommerce · KSA</div>
-          <div class="case-title">Finding Where Friction Hides</div>
-        </div>
-      </div>
-      <div class="case-grid">
-        <div class="col reveal reveal-d1">
-          <div class="col-label">Context</div>
-          <div class="ctx-item"><span>Merchants churning without a clear reason why.</span></div>
-          <div class="ctx-item"><span>Pain points not showing in reports — the silence was the problem.</span></div>
-          <div class="ctx-item"><span>Support overwhelmed but nobody could pinpoint the source.</span></div>
-        </div>
-        <div class="col int-col reveal reveal-d2">
-          <div class="col-label">Intervention</div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Mapped The Journey</span><span class="int-arrow">→</span>Used journey heatmaps and thematic VOC analysis to expose friction nobody was tracking.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Unlocked Amazon Integration</span><span class="int-arrow">→</span>Identified it as the highest-impact move for merchant sales and NPS. Pushed it forward fast.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Rebuilt Escalation Architecture</span><span class="int-arrow">→</span>Replaced a reactive system with structured escalation models built on merchant behavior patterns.</div>
-          </div>
-        </div>
-        <div class="col reveal reveal-d3">
-          <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">-17% merchant churn in under 45 days.</span></div>
-          <div class="out-item"><span class="out-text">NPS uplift following Amazon integration rollout.</span></div>
-          <div class="out-item"><span class="out-text">Support shifted from reactive firefighting to predictive intervention.</span></div>
-        </div>
-        <div class="principle reveal reveal-d4">"I look where friction hides — <em>in silence, not just in complaints.</em>"</div>
-      </div>
-    </div>
-    <div class="case-divider"></div>
-    <div class="case" id="s3" data-case>
-      <div class="case-header reveal">
-        <div class="case-num">03 —</div>
-        <div>
-          <div class="case-company">Amazon · Global Ops · KSA</div>
-          <div class="case-title">Moving the Unmovable</div>
-        </div>
-      </div>
-      <div class="case-grid">
-        <div class="col reveal reveal-d1">
-          <div class="col-label">Context</div>
-          <div class="ctx-item"><span>Morale tanking silently across the floor.</span></div>
-          <div class="ctx-item"><span>Dense guides customers weren't reading — tickets piling up.</span></div>
-          <div class="ctx-item"><span>Floor-level suggestions buried before reaching leadership.</span></div>
-        </div>
-        <div class="col int-col reveal reveal-d2">
-          <div class="col-label">Intervention</div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Killed The Guides</span><span class="int-arrow">→</span>Replaced dense docs with short instructional videos. Customers stopped needing support for common issues.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">RCA Workshops</span><span class="int-arrow">→</span>Ran root cause analysis on the floor. Exposed systemic defects, gave teams a structural language for problems.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Built a Proactive Playbook</span><span class="int-arrow">→</span>Mapped defect trends across high-impact SKUs. Teams could intervene before issues reached customers.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Advised the Regional Director</span><span class="int-arrow">→</span>Launched feedback loops and cultural recognition programs. Translated regional insight into operational tweaks. One recommendation approved and shipped.</div>
-          </div>
-        </div>
-        <div class="col reveal reveal-d3">
-          <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">-25% issue resolution time post-RCA workshops.</span></div>
-          <div class="out-item"><span class="out-text">2 out of 2 proposals — both approved and shipped.</span></div>
-          <div class="out-item"><span class="out-text">Team morale visibly shifted across the floor.</span></div>
-        </div>
-        <div class="principle reveal reveal-d4">"If people won't read, <em>build experiences they don't need to read.</em>"</div>
-      </div>
-    </div>
-    <div class="case-divider"></div>
-    <div class="case" id="s4" data-case>
-      <div class="case-header reveal">
-        <div class="case-num">04 —</div>
-        <div>
-          <div class="case-company">LG Electronics · Consumer Tech · KSA</div>
-          <div class="case-title">When Numbers Speak Louder Than Hesitation</div>
-        </div>
-      </div>
-      <div class="case-grid">
-        <div class="col reveal reveal-d1">
-          <div class="col-label">Context</div>
-          <div class="ctx-item"><span>High operational costs, uncertain market appetite.</span></div>
-          <div class="ctx-item"><span>Product teams stuck in indecision — no localized data to justify the launch.</span></div>
-          <div class="ctx-item"><span>A product with real potential sitting in limbo.</span></div>
-        </div>
-        <div class="col int-col reveal reveal-d2">
-          <div class="col-label">Intervention</div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Built a Market-Sensing Dashboard</span><span class="int-arrow">→</span>Mapped regional demand potential vs operational investment. Turned hesitation into a structured decision.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Went Deep on KSA Context</span><span class="int-arrow">→</span>Integrated demographic fit, purchasing behavior, smart home adoption, and remote working trends.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Connected CX to Supply Chain</span><span class="int-arrow">→</span>Bridged customer interest signals from sales, support, and retail ops into inventory and logistics planning.</div>
-          </div>
-        </div>
-        <div class="col reveal reveal-d3">
-          <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">Launch greenlit — hesitation replaced by data-backed confidence.</span></div>
-          <div class="out-item"><span class="out-text">Dashboard confirmed KSA was the perfect market for the product.</span></div>
-          <div class="out-item"><span class="out-text">Became known as the person who weaponizes insight into decisions.</span></div>
-        </div>
-        <div class="principle reveal reveal-d4">"CX doesn't stop at satisfaction scores — <em>it drives what lands on the shelf.</em>"</div>
-      </div>
-    </div>
-    <div class="case-divider"></div>
-    <div class="case" id="s5" data-case>
-      <div class="case-header reveal">
-        <div class="case-num">05 —</div>
-        <div>
-          <div class="case-company">McDonald's USA · Operations · Part-Time</div>
-          <div class="case-title">Systems Thinking at 18</div>
-        </div>
-      </div>
-      <div class="case-grid">
-        <div class="col reveal reveal-d1">
-          <div class="col-label">Context</div>
-          <div class="ctx-item"><span>KPIs looked green. Metrics were fine. Something was still off.</span></div>
-          <div class="ctx-item"><span>CRM specialists each had unspoken strengths nobody was using.</span></div>
-          <div class="ctx-item"><span>Every call routed randomly — erasing individual edge entirely.</span></div>
-        </div>
-        <div class="col int-col reveal reveal-d2">
-          <div class="col-label">Intervention</div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Shadow Investigation</span><span class="int-arrow">→</span>Observed specialist behavior patterns across call types. Mapped who was actually best at what.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Skills-Mapping Matrix</span><span class="int-arrow">→</span>Designed a routing system matching call types to specialist strengths. No software. No budget. Pure intelligence optimization.</div>
-          </div>
-        </div>
-        <div class="col reveal reveal-d3">
-          <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">Customer satisfaction rose post-implementation.</span></div>
-          <div class="out-item"><span class="out-text">Resolution time dropped as specialists handled their strongest case types.</span></div>
-          <div class="out-item"><span class="out-text">Internal morale surged — people felt seen for what they were actually good at.</span></div>
-        </div>
-        <div class="principle reveal reveal-d4">"I don't need permission to fix what's broken. <em>I see it, I act, I improve.</em>"</div>
-      </div>
-    </div>
-    <div class="case-divider"></div>
-    <div class="case" id="s6" data-case>
-      <div class="case-header reveal">
-        <div class="case-num">06 —</div>
-        <div>
-          <div class="case-company">Just Taco · F&B · KSA · Pro Bono</div>
-          <div class="case-title">Free Work. 400% Growth. No Apologies.</div>
-        </div>
-      </div>
-      <div class="case-grid">
-        <div class="col reveal reveal-d1">
-          <div class="col-label">Context</div>
-          <div class="ctx-item"><span>Small local brand stuck at 8K SAR daily revenue.</span></div>
-          <div class="ctx-item"><span>Invisible on social. No budget. No strategy.</span></div>
-          <div class="ctx-item"><span>No contract. No fees. Just belief.</span></div>
-        </div>
-        <div class="col int-col reveal reveal-d2">
-          <div class="col-label">Intervention</div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Reframed The Product</span><span class="int-arrow">→</span>Stopped selling a taco. Started selling an identity. Gave the brand cultural personality.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Zero-Budget UGC Campaign</span><span class="int-arrow">→</span>Built content strategy around storytelling, humor, and street-level intimacy. Customers became creators.</div>
-          </div>
-          <div class="int-item">
-            <div class="int-text"><span class="int-title">Built Community Not Audience</span><span class="int-arrow">→</span>Engineered advocates who made the brand part of their personal identity. Organic, sustained, self-growing.</div>
-          </div>
-        </div>
-        <div class="col reveal reveal-d3">
-          <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">400% revenue growth — 8K SAR to 46K SAR daily.</span></div>
-          <div class="out-item"><span class="out-text">Brand became a local legend with sustained organic engagement.</span></div>
-          <div class="out-item"><span class="out-text">Zero budget. Full results.</span></div>
-        </div>
-        <div class="principle reveal reveal-d4">"I don't need a contract to deliver excellence. <em>If I believe — I go all in.</em>"</div>
-      </div>
-    </div>
-  </div>
+
   <section class="results-section">
     <div class="results-eyebrow reveal">By The Numbers</div>
     <h2 class="results-title reveal">Results at a <span>Glance.</span></h2>
     <div class="results-grid">
-      <div class="r-cell reveal reveal-d1">
-        <div class="r-num">+22%</div>
-        <div class="r-label">CSAT uplift in 90 days</div>
-        <div class="r-source">Cross-portfolio</div>
       </div>
-      <div class="r-cell reveal reveal-d1">
-        <div class="r-num">-28%</div>
-        <div class="r-label">Complaint volume via proactive CX</div>
-        <div class="r-source">Cross-portfolio</div>
-      </div>
-      <div class="r-cell reveal reveal-d2">
-        <div class="r-num">100%</div>
-        <div class="r-label">Card activation rate</div>
-        <div class="r-source">Alaan Pay</div>
-      </div>
-      <div class="r-cell reveal reveal-d2">
-        <div class="r-num">-25%</div>
-        <div class="r-label">Issue resolution time</div>
-        <div class="r-source">Amazon</div>
-      </div>
-      <div class="r-cell reveal reveal-d3">
-        <div class="r-num">-17%</div>
-        <div class="r-label">Merchant churn in 45 days</div>
-        <div class="r-source">Zid Platform</div>
-      </div>
-      <div class="r-cell reveal reveal-d3">
-        <div class="r-num">400%</div>
-        <div class="r-label">Revenue growth, zero budget</div>
-        <div class="r-source">Just Taco</div>
-      </div>
-    </div>
   </section>
 
   <footer>
     <div class="footer-brand">Sultan</div>
-    <div class="footer-tag">CX Strategist · KSA & Global · Built to move markets</div>
+    <div class="footer-contact">
+      <a href="mailto:sultanfq.career@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        sultanfq.career@gmail.com
+      </a>
+      <a href="tel:+966599061969">+966 59 906 1969</a>
+    </div>
+    <div class="footer-tag">CX Strategist · Built to move markets</div>
   </footer>
 
   <script>

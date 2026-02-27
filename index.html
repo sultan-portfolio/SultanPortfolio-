@@ -48,7 +48,7 @@
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s ease;
     }
-    .nav.scrolled { border-color: var(--border); }
+    .nav.scrolled { border-bottom: 1px solid var(--border); }
 
     .nav-logo {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -56,6 +56,7 @@
       font-size: 17px;
       color: var(--ink);
       letter-spacing: -0.5px;
+      text-decoration: none;
     }
     .nav-logo span { color: var(--mauve); }
 
@@ -369,17 +370,24 @@
     .results-title span { color: var(--mauve); }
 
     .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    
+    /* Interactive Results Cells */
     .r-cell {
       background: var(--card-bg);
       padding: 32px;
       position: relative;
       overflow: hidden;
-      transition: background 0.3s ease;
-      cursor: default;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
       border-radius: 4px;
       border: 1px solid var(--border);
     }
-    .r-cell:hover { background: #fafafa; }
+    .r-cell:hover {
+      background: var(--mauve-dim);
+      border-color: var(--mauve-light);
+      transform: translateY(-2px);
+    }
 
     .r-num {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -390,7 +398,7 @@
       letter-spacing: -2px;
     }
     .r-label { font-size: 12.5px; color: var(--ink2); margin-top: 10px; line-height: 1.5; }
-    .r-source { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); margin-top: 12px; font-weight: 600; }
+    .r-source { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--mauve); margin-top: 12px; font-weight: 700; }
 
     /* CTA Section */
     .cta-section {
@@ -469,7 +477,7 @@
 </head>
 <body>
   <nav class="nav" id="mainNav">
-    <div class="nav-logo">S<span>.</span>F</div>
+    <a href="#" class="nav-logo">S<span>.</span>F</a>
     <ul class="nav-links">
       <li><a href="#s1">Alaan</a></li>
       <li><a href="#s2">Zid</a></li>
@@ -752,45 +760,47 @@
         <div class="principle reveal reveal-d4">"I don't need a contract to deliver excellence. <em>If I believe — I go all in.</em>"</div>
       </div>
     </div>
-  </div><section class="results-section">
+  </div>
+
+  <section class="results-section">
     <div class="results-eyebrow reveal">By The Numbers</div>
-    <h2 class="results-title reveal">Results at a <span>Glance.</span></h2>
+    <h2 class="results-title reveal">Impact <span>metrics.</span></h2>
     <div class="results-grid">
-      <div class="r-cell reveal reveal-d1">
+      <a href="#s1" class="r-cell reveal reveal-d1">
+        <div class="r-num">100%</div>
+        <div class="r-label">Card activation rate</div>
+        <div class="r-source">Alaan Pay</div>
+      </a>
+      <a href="#s6" class="r-cell reveal reveal-d1">
+        <div class="r-num">400%</div>
+        <div class="r-label">Revenue growth, zero budget</div>
+        <div class="r-source">Just Taco</div>
+      </a>
+      <a href="#s2" class="r-cell reveal reveal-d2">
+        <div class="r-num">−17%</div>
+        <div class="r-label">Merchant churn in 45 days</div>
+        <div class="r-source">Zid Platform</div>
+      </a>
+      <a href="#s3" class="r-cell reveal reveal-d2">
+        <div class="r-num">−25%</div>
+        <div class="r-label">Issue resolution time</div>
+        <div class="r-source">Amazon</div>
+      </a>
+      <div class="r-cell reveal reveal-d3">
         <div class="r-num">+22%</div>
         <div class="r-label">CSAT uplift in 90 days</div>
         <div class="r-source">Cross-portfolio</div>
       </div>
-      <div class="r-cell reveal reveal-d1">
+      <div class="r-cell reveal reveal-d3">
         <div class="r-num">−28%</div>
         <div class="r-label">Complaint volume via proactive CX</div>
         <div class="r-source">Cross-portfolio</div>
-      </div>
-      <div class="r-cell reveal reveal-d2">
-        <div class="r-num">100%</div>
-        <div class="r-label">Card activation rate</div>
-        <div class="r-source">Alaan Pay</div>
-      </div>
-      <div class="r-cell reveal reveal-d2">
-        <div class="r-num">−25%</div>
-        <div class="r-label">Issue resolution time</div>
-        <div class="r-source">Amazon</div>
-      </div>
-      <div class="r-cell reveal reveal-d3">
-        <div class="r-num">−17%</div>
-        <div class="r-label">Merchant churn in 45 days</div>
-        <div class="r-source">Zid Platform</div>
-      </div>
-      <div class="r-cell reveal reveal-d3">
-        <div class="r-num">400%</div>
-        <div class="r-label">Revenue growth, zero budget</div>
-        <div class="r-source">Just Taco</div>
       </div>
     </div>
   </section>
 
   <section class="cta-section">
-    <a href="mailto:sultanfq.career@gmail.com" class="cta-button">Start a Conversation</a>
+    <a href="mailto:sultanfq.career@gmail.com" class="cta-button">Connect with me</a>
   </section>
 
   <footer>

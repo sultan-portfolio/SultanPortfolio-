@@ -104,7 +104,7 @@
     .hero-content {
       position: relative;
       z-index: 3;
-      max-width: 600px;
+      max-width: 700px;
     }
 
     .hero-eyebrow {
@@ -127,6 +127,15 @@
       color: var(--ink);
       opacity: 0;
       animation: fadeUp 0.9s ease forwards 0.55s;
+    }
+    
+    .hero-credentials {
+        font-family: 'Jost', sans-serif;
+        font-size: clamp(14px, 1.5vw, 22px);
+        font-weight: 400;
+        color: var(--dim);
+        margin-left: 10px;
+        letter-spacing: 1px;
     }
 
     .hero-hook {
@@ -217,11 +226,43 @@
       font-size: 14px;
     }
 
+    /* ABOUT ME SECTION */
+    .about {
+        padding: 100px 10vw;
+        background: var(--card-bg);
+        border-top: 1px solid var(--border);
+    }
+    
+    .about-wrapper {
+        max-width: 800px;
+    }
+    
+    .about-p {
+        font-size: clamp(18px, 2vw, 24px);
+        line-height: 1.7;
+        color: var(--ink);
+        font-weight: 400;
+        margin-top: 32px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    .about-p em {
+        color: var(--mauve);
+        font-style: normal;
+        font-weight: 600;
+    }
+    
+    .about-tagline {
+        font-size: 16px;
+        color: var(--ink2);
+        margin-top: 32px;
+        line-height: 1.8;
+    }
+
     /* PILLARS SECTION */
     .pillars {
       padding: 100px 10vw;
       background: var(--card-bg);
-      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
     .section-eyebrow { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--mauve); font-weight: 700; margin-bottom: 10px; display: block; }
@@ -258,7 +299,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 22px;
       font-weight: 700;
-      color: var(--mauve); /* Updated to Old Mauve */
+      color: var(--mauve);
       margin-bottom: 12px;
       letter-spacing: -0.5px;
     }
@@ -614,7 +655,7 @@
   <section class="hero" id="s0">
     <div class="hero-content">
       <p class="hero-eyebrow">Strategy Case Studies</p>
-      <h1 class="hero-name">Sultan</h1>
+      <h1 class="hero-name">Sultan<span class="hero-credentials">CCXP® | CXAD</span></h1>
       <p class="hero-hook">Want to see problems<br>flip into <em>opportunities?</em></p>
       <p class="hero-sub">FinTech, eCommerce, Consumer Tech & F&B — KSA and beyond.</p>
       <div class="hero-stats">
@@ -636,13 +677,24 @@
         </div>
       </div>
       
-      <a href="#pillars" class="scroll-cta">
+      <a href="#about" class="scroll-cta">
           <div class="scroll-wrapper">
               <span>Scroll down to see how I did it</span>
               <span class="scroll-arrow">→</span>
           </div>
       </a>
     </div>
+  </section>
+    
+  <section class="about" id="about">
+      <div class="about-wrapper reveal">
+          <div class="section-eyebrow">Who I Am</div>
+          <p class="about-p">I see patterns others ignore.</p>
+          <p class="about-p"><em>'Behind quiet churn'</em></p>
+          <p class="about-p"><em>'Inside unowned touchpoints'</em></p>
+          <p class="about-p"><em>'Beneath metrics that look fine but aren’t'</em></p>
+          <p class="about-tagline">Seven years in Saudi’s toughest markets. My job: find what’s broken, fix it, and make it move revenue.</p>
+      </div>
   </section>
 
   <section class="pillars" id="pillars">

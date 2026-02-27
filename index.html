@@ -183,7 +183,7 @@
       font-weight: 600;
     }
 
-    /* Interactive Scroll Text (Updated Position) */
+    /* Interactive Scroll Text */
     .scroll-cta {
       display: flex;
       text-decoration: none;
@@ -191,6 +191,7 @@
       opacity: 0;
       animation: fadeUp 0.9s ease forwards 1.2s;
       justify-content: flex-start;
+      cursor: pointer;
     }
     
     .scroll-wrapper {
@@ -216,10 +217,62 @@
       font-size: 14px;
     }
 
+    /* PILLARS SECTION */
+    .pillars {
+      padding: 100px 10vw;
+      background: var(--card-bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .section-eyebrow { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--mauve); font-weight: 700; margin-bottom: 10px; display: block; }
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(34px, 5vw, 58px);
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 60px;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .pillar-card {
+      border: 1px solid var(--border);
+      padding: 32px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    .pillar-card:hover { border-color: var(--mauve-light); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+    .pillar-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--mauve);
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+    }
+    .pillar-h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .pillar-p {
+      font-size: 14px;
+      color: var(--ink2);
+      line-height: 1.7;
+    }
+
     /* TIMELINE */
     .timeline {
       position: relative;
       padding: 0 10vw;
+      background: var(--bg);
     }
 
     .timeline::before {
@@ -229,7 +282,7 @@
       top: 0;
       bottom: 0;
       width: 1px;
-      background: linear-gradient(to bottom, transparent, var(--border) 8%, var(--border) 92%, transparent);
+      background: linear-gradient(to bottom, transparent, var(--border) 2%, var(--border) 98%, transparent);
     }
 
     /* CASE */
@@ -530,10 +583,12 @@
       .case::before { display: none; }
       .case-divider { margin-left: 0; }
       .nav-links { display: none; }
+      .pillars-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
       .hero, .timeline, .results-section, .cta-section { padding-left: 6vw; padding-right: 6vw; }
+      .pillars { padding: 60px 6vw; }
       .results-grid { grid-template-columns: 1fr; }
       .hero-stats { flex-direction: column; gap: 16px; }
       .hstat { border-right: none; padding-right: 0; margin-right: 0; }
@@ -581,12 +636,35 @@
         </div>
       </div>
       
-      <a href="#s1" class="scroll-cta">
+      <a href="#pillars" class="scroll-cta">
           <div class="scroll-wrapper">
               <span>Scroll down to see how I did it</span>
               <span class="scroll-arrow">→</span>
           </div>
       </a>
+    </div>
+  </section>
+
+  <section class="pillars" id="pillars">
+    <div class="section-eyebrow reveal">My Strategic Pillars</div>
+    <h2 class="section-title reveal">Three Strategic Pillars</h2>
+    
+    <div class="pillars-grid">
+      <div class="pillar-card reveal reveal-d1">
+        <div class="pillar-num">I</div>
+        <h3 class="pillar-h3">Structural Clarity</h3>
+        <p class="pillar-p">Make ambiguity measurable. I break complex chaos into actionable frameworks, ensuring every team member knows exactly how their role drives the outcome.</p>
+      </div>
+      <div class="pillar-card reveal reveal-d2">
+        <div class="pillar-num">II</div>
+        <h3 class="pillar-h3">Experience Leverage</h3>
+        <p class="pillar-p">Turn CX into revenue architecture. I map the customer journey not just for satisfaction, but to identify precise moments where friction can be flipped into profit.</p>
+      </div>
+      <div class="pillar-card reveal reveal-d3">
+        <div class="pillar-num">III</div>
+        <h3 class="pillar-h3">Cultural Activation</h3>
+        <p class="pillar-p">Align people around execution velocity. Strategy is useless without speed; I foster a culture of proactive ownership to turn insights into implemented results instantly.</p>
+      </div>
     </div>
   </section>
 

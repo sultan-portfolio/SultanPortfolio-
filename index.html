@@ -12,7 +12,7 @@
       --bg2: #f0ede8;
       --bg3: #e8e4dd;
       
-      /* Updated Primary Color: Old Mauve */
+      /* Primary Color: Old Mauve */
       --primary: #673147; 
       --primary-mid: rgba(103, 49, 71, 0.1);
       --primary-dim: rgba(103, 49, 71, 0.05);
@@ -196,8 +196,9 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      border: 1px solid transparent;
     }
-    .cta-btn svg { width: 16px; height: 16px; }
+    .cta-btn svg { width: 16px; height: 16px; fill: currentColor; }
     
     .cta-btn.primary {
       background: var(--primary);
@@ -208,7 +209,7 @@
     .cta-btn.secondary {
       background: var(--bg2);
       color: var(--ink);
-      border: 1px solid var(--border);
+      border-color: var(--border);
     }
     .cta-btn.secondary:hover { background: var(--bg3); }
 
@@ -625,13 +626,199 @@
   </section>
 
   <div class="timeline">
+    <div class="case active" id="s1" data-case>
+      <div class="case-header reveal">
+        <div class="case-num">01 —</div>
+        <div>
+          <div class="case-company">Alaan Pay · FinTech · KSA</div>
+          <div class="case-title">From Chaos to Loyal Clients</div>
+        </div>
+      </div>
+      <div class="case-grid">
+        <div class="col reveal reveal-d1">
+          <div class="col-label">Context</div>
+          <div class="ctx-item"><span>The only Saudi on ground during market launch.</span></div>
+          <div class="ctx-item"><span>Competitors systematically targeting our warm leads.</span></div>
+          <div class="ctx-item"><span>Clients going cold during the last step of onboarding.</span></div>
+        </div>
+        <div class="col int-col reveal reveal-d2">
+          <div class="col-label">Intervention</div>
+          <div class="int-item">
+            <div class="int-text"><span class="int-title">Emergency Alignment</span><span class="int-arrow">→</span>Aligned Sales, Marketing, Ops, and Product teams to act fast.</div>
+          </div>
+          <div class="int-item">
+            <div class="int-text"><span class="int-title">Localization</span><span class="int-arrow">→</span>Embedded SAR symbol to build instant trust.</div>
+          </div>
+        </div>
+        <div class="col reveal reveal-d3">
+          <div class="col-label">Outcome</div>
+          <div class="out-item"><span class="out-text">100% card activation rate post-automation.</span></div>
+          <div class="out-item"><span class="out-text">57% of targeted leads converted.</span></div>
+        </div>
+        <div class="principle reveal reveal-d4">"When stakes are high and clarity is low — <em>I thrive.</em>"</div>
+      </div>
     </div>
+    <div class="case-divider"></div>
+    
+    <div class="case" id="s2" data-case>
+      <div class="case-header reveal">
+        <div class="case-num">02 —</div>
+        <div>
+          <div class="case-company">Zid Platform · eCommerce · KSA</div>
+          <div class="case-title">Finding Where Friction Hides</div>
+        </div>
+      </div>
+      <div class="case-grid">
+        <div class="col reveal reveal-d1">
+          <div class="col-label">Context</div>
+          <div class="ctx-item"><span>Merchants churning without a clear reason why.</span></div>
+          <div class="ctx-item"><span>Support overwhelmed but cause was unknown.</span></div>
+        </div>
+        <div class="col int-col reveal reveal-d2">
+          <div class="col-label">Intervention</div>
+          <div class="int-item">
+            <div class="int-text"><span class="int-title">Journey Mapping</span><span class="int-arrow">→</span>Used heatmaps to expose hidden friction.</div>
+          </div>
+        </div>
+        <div class="col reveal reveal-d3">
+          <div class="col-label">Outcome</div>
+          <div class="out-item"><span class="out-text">-17% merchant churn in 45 days.</span></div>
+        </div>
+        <div class="principle reveal reveal-d4">"I look where friction hides — <em>in silence, not just in complaints.</em>"</div>
+      </div>
+    </div>
+    <div class="case-divider"></div>
+    
+    <div class="case" id="s3" data-case>
+      <div class="case-header reveal">
+        <div class="case-num">03 —</div>
+        <div>
+          <div class="case-company">Amazon · Global Ops · KSA</div>
+          <div class="case-title">Moving the Unmovable</div>
+        </div>
+      </div>
+      <div class="case-grid">
+        <div class="col reveal reveal-d1">
+          <div class="col-label">Context</div>
+          <div class="ctx-item"><span>Dense guides customers weren't reading.</span></div>
+          <div class="ctx-item"><span>Morale tanking silently on the floor.</span></div>
+        </div>
+        <div class="col int-col reveal reveal-d2">
+          <div class="col-label">Intervention</div>
+          <div class="int-item">
+            <div class="int-text"><span class="int-title">Proactive Tools</span><span class="int-arrow">→</span>Replaced dense docs with short videos.</div>
+          </div>
+        </div>
+        <div class="col reveal reveal-d3">
+          <div class="col-label">Outcome</div>
+          <div class="out-item"><span class="out-text">-25% issue resolution time.</span></div>
+        </div>
+        <div class="principle reveal reveal-d4">"If people won't read, <em>build experiences they don't need to read.</em>"</div>
+      </div>
+    </div>
+    <div class="case-divider"></div>
 
+    <div class="case" id="s4" data-case>
+        <div class="case-header reveal">
+          <div class="case-num">04 —</div>
+          <div>
+            <div class="case-company">LG Electronics · Consumer Tech · KSA</div>
+            <div class="case-title">Weaponizing Data for Launch</div>
+          </div>
+        </div>
+        <div class="case-grid">
+          <div class="col reveal reveal-d1">
+            <div class="col-label">Context</div>
+            <div class="ctx-item"><span>Product teams stuck in indecision.</span></div>
+            <div class="ctx-item"><span>No localized data to justify launch.</span></div>
+          </div>
+          <div class="col int-col reveal reveal-d2">
+            <div class="col-label">Intervention</div>
+            <div class="int-item">
+              <div class="int-text"><span class="int-title">Decision Dashboard</span><span class="int-arrow">→</span>Mapped demand potential vs investment.</div>
+            </div>
+          </div>
+          <div class="col reveal reveal-d3">
+            <div class="col-label">Outcome</div>
+            <div class="out-item"><span class="out-text">Launch greenlit with data-backed confidence.</span></div>
+          </div>
+          <div class="principle reveal reveal-d4">"CX doesn't stop at satisfaction scores — <em>it drives what lands on the shelf.</em>"</div>
+        </div>
+      </div>
+      <div class="case-divider"></div>
+      
+      <div class="case" id="s5" data-case>
+        <div class="case-header reveal">
+          <div class="case-num">05 —</div>
+          <div>
+            <div class="case-company">McDonald's USA · Operations</div>
+            <div class="case-title">Systems Thinking at 18</div>
+          </div>
+        </div>
+        <div class="case-grid">
+          <div class="col reveal reveal-d1">
+            <div class="col-label">Context</div>
+            <div class="ctx-item"><span>Random call routing erasing individual edge.</span></div>
+          </div>
+          <div class="col int-col reveal reveal-d2">
+            <div class="col-label">Intervention</div>
+            <div class="int-item">
+              <div class="int-text"><span class="int-title">Routing Optimization</span><span class="int-arrow">→</span>Matched calls to specialist strengths.</div>
+            </div>
+          </div>
+          <div class="col reveal reveal-d3">
+            <div class="col-label">Outcome</div>
+            <div class="out-item"><span class="out-text">Customer satisfaction rose post-implementation.</span></div>
+          </div>
+          <div class="principle reveal reveal-d4">"I don't need permission to fix what's broken. <em>I see it, I act, I improve.</em>"</div>
+        </div>
+      </div>
+      <div class="case-divider"></div>
+      
+      <div class="case" id="s6" data-case>
+        <div class="case-header reveal">
+          <div class="case-num">06 —</div>
+          <div>
+            <div class="case-company">Just Taco · F&B · KSA</div>
+            <div class="case-title">400% Growth, Zero Budget</div>
+          </div>
+        </div>
+        <div class="case-grid">
+          <div class="col reveal reveal-d1">
+            <div class="col-label">Context</div>
+            <div class="ctx-item"><span>Small brand stuck at 8K SAR daily revenue.</span></div>
+          </div>
+          <div class="col int-col reveal reveal-d2">
+            <div class="col-label">Intervention</div>
+            <div class="int-item">
+              <div class="int-text"><span class="int-title">Community Building</span><span class="int-arrow">→</span>UGC campaign focused on identity.</div>
+            </div>
+          </div>
+          <div class="col reveal reveal-d3">
+            <div class="col-label">Outcome</div>
+            <div class="out-item"><span class="out-text">Growth to 46K SAR daily.</span></div>
+          </div>
+          <div class="principle reveal reveal-d4">"I don't need a contract to deliver excellence. <em>If I believe — I go all in.</em>"</div>
+        </div>
+      </div>
+  </div>
   <section class="results-section">
     <div class="results-eyebrow reveal">By The Numbers</div>
     <h2 class="results-title reveal">Results at a <span>Glance.</span></h2>
     <div class="results-grid">
+      <div class="r-cell reveal reveal-d1">
+        <div class="r-num">+22%</div>
+        <div class="r-label">CSAT uplift</div>
       </div>
+      <div class="r-cell reveal reveal-d2">
+        <div class="r-num">100%</div>
+        <div class="r-label">Card activation rate</div>
+      </div>
+      <div class="r-cell reveal reveal-d3">
+        <div class="r-num">400%</div>
+        <div class="r-label">Revenue growth</div>
+      </div>
+    </div>
   </section>
 
   <footer>

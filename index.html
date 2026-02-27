@@ -76,7 +76,7 @@
     }
     .nav-links a:hover { color: var(--mauve); }
 
-    /* CTA Button in Nav */
+    /* Top Right CTA (Now LinkedIn) */
     .nav-cta {
       background: var(--mauve);
       color: var(--bg);
@@ -183,39 +183,40 @@
       font-weight: 600;
     }
 
-    /* Scroll Down CTA */
+    /* Interactive Scroll Text */
     .scroll-cta {
       position: absolute;
       bottom: 40px;
-      left: 10vw;
-      text-decoration: none;
+      left: 0;
+      right: 0;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--mauve);
-      font-weight: 700;
+      justify-content: center;
+      text-decoration: none;
       opacity: 0;
       animation: fadeUp 0.9s ease forwards 1.2s;
     }
-    .scroll-arrow {
-      width: 24px;
-      height: 24px;
-      border: 2px solid var(--mauve);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: bounce 2s infinite;
+    
+    .scroll-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 10px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--dim);
+        font-weight: 600;
+        animation: moveHorizontal 3s ease-in-out infinite alternate;
     }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-      40% {transform: translateY(-5px);}
-      60% {transform: translateY(-3px);}
+    @keyframes moveHorizontal {
+      from { transform: translateX(-5vw); }
+      to { transform: translateX(5vw); }
+    }
+    
+    .scroll-arrow {
+      color: var(--mauve);
+      font-weight: 700;
+      font-size: 14px;
     }
 
     /* TIMELINE */
@@ -334,9 +335,9 @@
       color: var(--ink2);
       align-items: flex-start;
     }
+    .ctx-item::before { content: "•"; color: var(--mauve); flex-shrink: 0; }
 
     .ctx-item:last-child { margin-bottom: 0; }
-    .ctx-emoji { font-size: 14px; flex-shrink: 0; margin-top: 2px; }
 
     .int-col { background: #FDF9F2; }
 
@@ -354,6 +355,7 @@
     .int-arrow { color: var(--mauve); font-weight: 700; margin: 0 4px; }
 
     .out-item { display: flex; gap: 10px; margin-bottom: 13px; align-items: flex-start; }
+    .out-item::before { content: "•"; color: var(--mauve); flex-shrink: 0; }
     .out-item:last-child { margin-bottom: 0; }
     .out-text { font-size: 12.5px; line-height: 1.7; color: var(--ink2); }
 
@@ -521,7 +523,6 @@
       .case::before { display: none; }
       .case-divider { margin-left: 0; }
       .nav-links { display: none; }
-      .scroll-cta { display: none; }
     }
 
     @media (max-width: 600px) {
@@ -530,6 +531,7 @@
       .hero-stats { flex-direction: column; gap: 16px; }
       .hstat { border-right: none; padding-right: 0; margin-right: 0; }
       footer { flex-direction: column; gap: 10px; text-align: center; padding: 32px 6vw; }
+      .scroll-cta { display: none; }
     }
   </style>
 </head>
@@ -544,7 +546,7 @@
       <li><a href="#s5">McDonald's</a></li>
       <li><a href="#s6">Just Taco</a></li>
     </ul>
-    <a href="mailto:sultanfq.career@gmail.com" class="nav-cta">Connect</a>
+    <a href="http://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=sultanfalahalqahtani1" target="_blank" class="nav-cta">Connect</a>
   </nav>
 
   <section class="hero" id="s0">
@@ -574,8 +576,10 @@
     </div>
     
     <a href="#s1" class="scroll-cta">
-        Scroll to see how
-        <div class="scroll-arrow">↓</div>
+        <div class="scroll-wrapper">
+            <span>Scroll down to see how I did it</span>
+            <span class="scroll-arrow">→</span>
+        </div>
     </a>
   </section>
 
@@ -622,12 +626,12 @@
         </div>
         <div class="col reveal reveal-d3">
           <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">100% card activation post-automation — from broken process to flawless launch.</span></div>
-          <div class="out-item"><span class="out-text">WhatsApp automation deployed in under two weeks.</span></div>
-          <div class="out-item"><span class="out-text">57% of targeted leads converted to loyal clients.</span></div>
-          <div class="out-item"><span class="out-text">Simultaneous victories: onboarding, competitor displacement, brand trust.</span></div>
-          <div class="out-item"><span class="out-text">Viral social proof: unpaid LinkedIn posts amplified brand organically.</span></div>
-          <div class="out-item"><span class="out-text">CEO and GM recognized my ability to bring order to ambiguity as a strategic lever.</span></div>
+          <div class="out-item"><span>100% card activation post-automation — from broken process to flawless launch.</span></div>
+          <div class="out-item"><span>WhatsApp automation deployed in under two weeks.</span></div>
+          <div class="out-item"><span>57% of targeted leads converted to loyal clients.</span></div>
+          <div class="out-item"><span>Simultaneous victories: onboarding, competitor displacement, brand trust.</span></div>
+          <div class="out-item"><span>Viral social proof: unpaid LinkedIn posts amplified brand organically.</span></div>
+          <div class="out-item"><span>CEO and GM recognized my ability to bring order to ambiguity as a strategic lever.</span></div>
         </div>
         <div class="principle reveal reveal-d4">"When stakes are high and clarity is low — <em>I thrive.</em>"</div>
       </div>
@@ -663,9 +667,9 @@
         </div>
         <div class="col reveal reveal-d3">
           <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">−17% merchant churn in under 45 days.</span></div>
-          <div class="out-item"><span class="out-text">NPS uplift following Amazon integration rollout.</span></div>
-          <div class="out-item"><span class="out-text">Support shifted from reactive firefighting to predictive intervention.</span></div>
+          <div class="out-item"><span>−17% merchant churn in under 45 days.</span></div>
+          <div class="out-item"><span>NPS uplift following Amazon integration rollout.</span></div>
+          <div class="out-item"><span>Support shifted from reactive firefighting to predictive intervention.</span></div>
         </div>
         <div class="principle reveal reveal-d4">"I look where friction hides — <em>in silence, not just in complaints.</em>"</div>
       </div>
@@ -704,9 +708,9 @@
         </div>
         <div class="col reveal reveal-d3">
           <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">−25% issue resolution time post-RCA workshops.</span></div>
-          <div class="out-item"><span class="out-text">2 out of 2 proposals — both approved and shipped.</span></div>
-          <div class="out-item"><span class="out-text">Team morale visibly shifted across the floor.</span></div>
+          <div class="out-item"><span>−25% issue resolution time post-RCA workshops.</span></div>
+          <div class="out-item"><span>2 out of 2 proposals — both approved and shipped.</span></div>
+          <div class="out-item"><span>Team morale visibly shifted across the floor.</span></div>
         </div>
         <div class="principle reveal reveal-d4">"If people won't read, <em>build experiences they don't need to read.</em>"</div>
       </div>
@@ -742,9 +746,9 @@
         </div>
         <div class="col reveal reveal-d3">
           <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">Launch greenlit — hesitation replaced by data-backed confidence.</span></div>
-          <div class="out-item"><span class="out-text">Dashboard confirmed KSA was the perfect market for the product.</span></div>
-          <div class="out-item"><span class="out-text">Became known as the person who weaponizes insight into decisions.</span></div>
+          <div class="out-item"><span>Launch greenlit — hesitation replaced by data-backed confidence.</span></div>
+          <div class="out-item"><span>Dashboard confirmed KSA was the perfect market for the product.</span></div>
+          <div class="out-item"><span>Became known as the person who weaponizes insight into decisions.</span></div>
         </div>
         <div class="principle reveal reveal-d4">"CX doesn't stop at satisfaction scores — <em>it drives what lands on the shelf.</em>"</div>
       </div>
@@ -777,9 +781,9 @@
         </div>
         <div class="col reveal reveal-d3">
           <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">Customer satisfaction rose post-implementation.</span></div>
-          <div class="out-item"><span class="out-text">Resolution time dropped as specialists handled their strongest case types.</span></div>
-          <div class="out-item"><span class="out-text">Internal morale surged — people felt seen for what they were actually good at.</span></div>
+          <div class="out-item"><span>Customer satisfaction rose post-implementation.</span></div>
+          <div class="out-item"><span>Resolution time dropped as specialists handled their strongest case types.</span></div>
+          <div class="out-item"><span>Internal morale surged — people felt seen for what they were actually good at.</span></div>
         </div>
         <div class="principle reveal reveal-d4">"I don't need permission to fix what's broken. <em>I see it, I act, I improve.</em>"</div>
       </div>
@@ -815,9 +819,9 @@
         </div>
         <div class="col reveal reveal-d3">
           <div class="col-label">Outcome</div>
-          <div class="out-item"><span class="out-text">400% revenue growth — 8K SAR to 46K SAR daily.</span></div>
-          <div class="out-item"><span class="out-text">Brand became a local legend with sustained organic engagement.</span></div>
-          <div class="out-item"><span class="out-text">Zero budget. Full results.</span></div>
+          <div class="out-item"><span>400% revenue growth — 8K SAR to 46K SAR daily.</span></div>
+          <div class="out-item"><span>Brand became a local legend with sustained organic engagement.</span></div>
+          <div class="out-item"><span>Zero budget. Full results.</span></div>
         </div>
         <div class="principle reveal reveal-d4">"I don't need a contract to deliver excellence. <em>If I believe — I go all in.</em>"</div>
       </div>
@@ -861,15 +865,19 @@
     </div>
   </section>
 
-     <section class="cta-section">
+  <section class="cta-section">
     <div class="contact-wrapper reveal">
         <a href="mailto:sultanfq.career@gmail.com" class="cta-button">Start a conversation</a>
         
         <div class="contact-icons">
             <a href="https://wa.me/966599061969" target="_blank" class="contact-icon" title="WhatsApp">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a5.462 5.462 0 0 1-2.793-.765l-.2-.118-2.078.545.555-2.025-.13-.211a5.497 5.497 0 0 1-.841-2.923c0-3.032 2.469-5.502 5.504-5.502 1.467 0 2.846.571 3.88 1.606a5.467 5.467 0 0 1 1.606 3.876c0 3.035-2.469 5.503-5.503 5.503m-2.925-1.631l-.227-.137-1.57.412.419-1.529-.144-.236a4.877 4.877 0 0 1-.745-2.583c0-2.69 2.187-4.877 4.878-4.877a4.887 4.887 0 0 1 3.457 1.428 4.891 4.891 0 0 1 1.429 3.456c0 2.691-2.187 4.877-4.878 4.877a4.855 4.855 0 0 1-2.584-.746l-.237-.144-1.529.419z"/></svg>
             </a>
             
+            <a href="http://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=sultanfalahalqahtani1" target="_blank" class="contact-icon" title="LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+
             <a href="mailto:sultanfq.career@gmail.com" class="contact-icon" title="Email">
                 <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             </a>

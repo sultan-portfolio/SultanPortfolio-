@@ -8,29 +8,22 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#020202;
-  --s1:rgba(10,10,10,0.85); /* Slightly darker for max contrast */
   --y:#FFB80E;
   --yl:#FFCA43;
   --r:#982121;
-  --w:#FFFFFF; /* Pure white for readability */
-  --wd:rgba(240,240,240,0.65); /* Brighter dim text */
-  --wf:rgba(240,240,240,0.04);
-  --bd:rgba(255,255,255,0.1);
-  --horizon:rgba(255,184,14,0.15);
+  --dk:#030303;
+  --s1:rgba(10,10,10,0.85); /* Darkened for better contrast */
+  --w:#FFFFFF; /* Pure white for max readability */
+  --wd:rgba(255,255,255,0.75); /* Brighter dim text */
+  --bd:rgba(255,184,14,0.15);
 }
 html{scroll-behavior:smooth;}
 
-/* DESERT BACKGROUND — horizontal lines like the horizon */
+/* DESERT HORIZON */
 body{
-  background-color:var(--bg);
-  background-image:repeating-linear-gradient(
-    to bottom,
-    transparent,
-    transparent 79px,
-    rgba(255,184,14,0.03) 79px,
-    rgba(255,184,14,0.03) 80px
-  );
+  background-color:var(--dk);
+  background-image:repeating-linear-gradient(to bottom,transparent 0px,transparent 48px,rgba(255,184,14,0.02) 49px,rgba(255,184,14,0.02) 50px);
+  background-attachment:fixed;
   color:var(--w);
   font-family:'Montserrat',sans-serif;
   overflow-x:hidden;
@@ -38,163 +31,157 @@ body{
 }
 
 /* NOISE */
-body::before{
+body::after{
   content:'';position:fixed;inset:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:0;opacity:.6;
+  pointer-events:none;z-index:0;opacity:.55;
 }
 
-/* STARS canvas (Gemini Engine) */
-#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.9;}
+/* STARS canvas */
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.8;}
+
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--dk);}
+::-webkit-scrollbar-thumb{background:var(--y);}
 
 /* PROGRESS */
-#prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--r),var(--y));z-index:9999;width:0%;box-shadow:0 0 10px rgba(255,184,14,0.4);}
+#prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--r),var(--y));z-index:9999;width:0%;box-shadow:0 0 10px rgba(255,184,14,0.5);}
+
+/* FIXED: SOLID TEXT (Removed Gradient for Readability) */
+.gt { color: var(--w); text-shadow: 0 0 15px rgba(255,255,255,0.15); display: inline-block; }
+.gt-yellow { color: var(--y); text-shadow: 0 0 15px rgba(255,184,14,0.2); }
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 6vw;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(2,2,2,.95),transparent);backdrop-filter:blur(10px);}
-.nav.scrolled{border-bottom:1px solid var(--bd); background:rgba(2,2,2,.98);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 7vw;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(3,3,3,.95),transparent);backdrop-filter:blur(10px);transition:all .3s;}
+nav.scrolled{border-bottom:1px solid var(--bd);background:rgba(3,3,3,.98);}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.14em;color:var(--w);text-decoration:none;}
 .nav-logo span{color:var(--y);}
 .nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--wd);text-decoration:none;font-weight:600;transition:color .2s;}
+.nav-links a{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--wd);text-decoration:none;font-weight:600;transition:color .2s;}
 .nav-links a:hover{color:var(--y);}
-.nav-cta{border:1px solid var(--y);color:var(--y);background:rgba(255,184,14,0.04);padding:8px 20px;font-size:.68rem;letter-spacing:.18em;font-weight:700;text-transform:uppercase;text-decoration:none;transition:all .3s;}
-.nav-cta:hover{background:var(--y);color:#000; box-shadow:0 0 15px rgba(255,184,14,0.3);}
+.nav-cta{border:1px solid var(--y);color:var(--y);background:rgba(255,184,14,0.04);padding:8px 20px;font-size:.68rem;letter-spacing:.18em;font-weight:700;text-transform:uppercase;text-decoration:none;transition:all .3s;border-radius:2px;}
+.nav-cta:hover{background:var(--y);color:#000;box-shadow:0 0 15px rgba(255,184,14,0.3);}
+
+/* SECTION HORIZON DIVIDER */
+.hdiv{height:1px;background:linear-gradient(90deg,transparent,rgba(255,184,14,0.25) 50%,transparent);margin:0;position:relative;z-index:1;}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 8vw 80px;position:relative;overflow:hidden;z-index:1;}
 
-/* Desert glow — sun setting on the horizon */
-.hero-sun{position:absolute;bottom:-20%;left:50%;transform:translateX(-50%);width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(255,184,14,0.1) 0%,rgba(152,33,33,0.05) 40%,transparent 70%);pointer-events:none;animation:sunrise 8s ease-in-out infinite alternate;}
-@keyframes sunrise{0%{transform:translateX(-50%) scale(1);opacity:.6;}100%{transform:translateX(-50%) scale(1.06);opacity:1;}}
+/* Setting sun glow */
+.hero-sun{position:absolute;bottom:-30%;left:50%;transform:translateX(-50%);width:1000px;height:600px;border-radius:50%;background:radial-gradient(ellipse,rgba(255,184,14,0.08) 0%,rgba(152,33,33,0.05) 40%,transparent 70%);pointer-events:none;animation:sunrise 9s ease-in-out infinite alternate;}
+@keyframes sunrise{0%{opacity:.5;transform:translateX(-50%) scale(1);}100%{opacity:1;transform:translateX(-50%) scale(1.06);}}
 
-/* Horizon line */
-.horizon-line{position:absolute;bottom:20%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,184,14,0.2),transparent);pointer-events:none;}
+.hero-horizon{position:absolute;bottom:22%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,184,14,0.2) 50%,transparent);pointer-events:none;}
+
+/* Sand particles */
+.sand{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.25;z-index:1;}
 
 .hero-content{position:relative;z-index:3;max-width:820px;}
-.hero-eyebrow{font-size:.65rem;letter-spacing:.34em;text-transform:uppercase;color:var(--y);font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:14px;opacity:0;animation:fup .7s .1s forwards;}
-.hero-eyebrow::after{content:'';width:40px;height:1px;background:var(--y);}
+.hero-eye{font-size:.65rem;letter-spacing:.34em;text-transform:uppercase;color:var(--y);font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:14px;opacity:0;animation:fup .7s .1s forwards;}
+.hero-eye::after{content:'';width:36px;height:2px;background:var(--y);}
 
-/* FIXED: Removed Gradient for pure readability */
-.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,9vw,9rem);line-height:.88;color:var(--w);margin-bottom:12px;opacity:0;animation:fup .8s .25s forwards;text-shadow: 2px 4px 10px rgba(0,0,0,0.5);}
-.hero-credentials{font-family:'Montserrat',sans-serif;font-size:clamp(12px,1.3vw,16px);font-weight:600;color:var(--y);letter-spacing:.26em;display:block;margin-bottom:36px;opacity:0;animation:fup .7s .4s forwards;text-transform:uppercase;}
-.hero-hook{font-size:clamp(1.2rem,1.8vw,1.6rem);font-weight:300;color:var(--w);line-height:1.7;margin-bottom:16px;border-left:2px solid var(--accent);padding-left:20px;opacity:0;animation:fup .7s .55s forwards;}
+.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,9vw,9rem);line-height:.88;margin-bottom:14px;opacity:0;animation:fup .8s .25s forwards;color:var(--w);}
+.hero-cred{font-size:clamp(12px,1.3vw,16px);font-weight:600;color:var(--y);letter-spacing:.26em;text-transform:uppercase;display:block;margin-bottom:36px;opacity:0;animation:fup .7s .4s forwards;}
+.hero-hook{font-size:clamp(1.2rem,1.8vw,1.7rem);font-weight:300;color:var(--w);line-height:1.7;border-left:3px solid var(--accent);padding-left:20px;margin-bottom:14px;opacity:0;animation:fup .7s .55s forwards;}
 .hero-hook em{color:var(--y);font-style:normal;font-weight:700;}
 .hero-sub{font-size:.95rem;color:var(--wd);font-weight:300;letter-spacing:.08em;opacity:0;animation:fup .7s .68s forwards;}
 
-/* HERO STATS */
 .hero-stats{display:flex;gap:0;margin-top:56px;opacity:0;animation:fup .7s .82s forwards;flex-wrap:wrap;}
-.hstat{padding-right:40px;margin-right:40px;border-right:1px solid var(--bd);}
+.hstat{padding-right:40px;margin-right:40px;border-right:1px solid rgba(255,255,255,.1);}
 .hstat:last-child{border-right:none;padding-right:0;margin-right:0;}
+.hstat-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;color:var(--w);}
+.hstat-label{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--y);font-weight:700;margin-top:5px;}
 
-/* FIXED: Removed Gradient */
-.hstat-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--w);line-height:1;text-shadow: 0 0 10px rgba(255,255,255,0.1);}
-.hstat-label{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--y);font-weight:700;margin-top:5px;}
-
-.scroll-cue{position:absolute;bottom:36px;left:8vw;display:flex;flex-direction:column;gap:9px;opacity:0;animation:fup 1s 1.2s forwards;}
+.scroll-cue{position:absolute;bottom:34px;left:8vw;display:flex;flex-direction:column;gap:9px;opacity:0;animation:fup 1s 1.2s forwards;z-index:3;}
 .scroll-cue span{font-size:.5rem;letter-spacing:.26em;text-transform:uppercase;color:var(--wd);}
-.scroll-line{width:2px;height:38px;background:linear-gradient(to bottom,var(--y),transparent);animation:sp 2s ease-in-out infinite;}
+.scroll-line{width:2px;height:36px;background:linear-gradient(to bottom,var(--y),transparent);animation:sp 2s ease-in-out infinite;}
 @keyframes sp{0%,100%{opacity:.2;}50%{opacity:1;}}
-@keyframes fup{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fup{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
 /* SECTIONS */
-section:not(.hero){padding:100px 8vw;position:relative;z-index:1;}
+section:not(.hero){padding:110px 8vw;position:relative;z-index:1;}
 
-/* HORIZON DIVIDERS between sections */
-section:not(.hero)::before{content:'';display:block;height:1px;background:linear-gradient(90deg,transparent,rgba(255,184,14,0.2),transparent);margin-bottom:80px;}
+.slabel{font-size:.65rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--y);margin-bottom:48px;display:flex;align-items:center;gap:18px;}
+.slabel::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,184,14,.25),transparent);}
 
-/* SECTION LABEL */
-.slabel{display:flex;align-items:center;gap:18px;font-size:.7rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--y);margin-bottom:50px;}
-.slabel::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,184,14,.3),transparent);}
-
-/* FIXED: SECTION TITLE */
-.stitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,5vw,5rem);line-height:.95;margin-bottom:56px;color:var(--w);}
+.stitle{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,5.5vw,5rem);line-height:.95;margin-bottom:56px;}
 
 /* ABOUT */
-.about-p{font-size:clamp(1.2rem,1.8vw,1.6rem);line-height:1.75;color:var(--wd);font-weight:300;margin-top:18px;}
+.about-p{font-size:clamp(1.2rem,1.8vw,1.7rem);line-height:1.75;color:var(--wd);font-weight:300;margin-top:18px;}
 .about-p em{color:var(--w);font-style:normal;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:2px;}
-.about-tagline{font-size:1.1rem;color:var(--y);margin-top:38px;line-height:1.8;font-weight:600;letter-spacing:.06em;}
+.about-tag{font-size:1.05rem;color:var(--y);margin-top:38px;line-height:1.8;font-weight:600;letter-spacing:.06em;}
 
 /* PILLARS */
-.pillars-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
-.pillar-card{background:var(--s1);padding:40px 36px;border:1px solid var(--bd);transition:all .3s;backdrop-filter:blur(5px);}
-.pillar-card:hover{border-color:var(--y);background:rgba(20,20,20,0.95);transform:translateY(-5px);}
-.pillar-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(255,184,14,.15);line-height:1;margin-bottom:18px;transition:color .3s;}
-.pillar-card:hover .pillar-num{color:var(--y);}
-.pillar-h3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--w);margin-bottom:14px;letter-spacing:1px;}
-.pillar-p{font-size:.9rem;color:var(--wd);line-height:1.82;font-weight:300;}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;}
+.pc{background:var(--s1);padding:44px 38px;border-bottom:2px solid rgba(255,184,14,.15);transition:all .3s;backdrop-filter:blur(8px);}
+.pc:hover{border-bottom-color:var(--y);background:rgba(20,20,20,0.95);transform:translateY(-5px);}
+.pnum{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:rgba(255,184,14,.15);line-height:1;margin-bottom:18px;transition:color .3s;}
+.pc:hover .pnum{color:var(--y);}
+.ph3{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--w);margin-bottom:14px;letter-spacing:1px;}
+.pp{font-size:.85rem;color:var(--wd);line-height:1.82;font-weight:300;}
 
-/* CASE CARDS — Claude's layout */
-.case-card{margin-bottom:40px;background:var(--s1);border:1px solid var(--bd);border-left:4px solid transparent;transition:all .3s;}
-.case-card:hover{border-left-color:var(--y);background:rgba(15,15,15,0.9);box-shadow: 0 15px 30px rgba(0,0,0,0.5);}
-.case-header{padding:40px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;border-bottom:1px solid var(--bd);}
-.case-company{font-size:.7rem;letter-spacing:.28em;color:var(--y);font-weight:700;text-transform:uppercase;margin-bottom:10px;}
-.case-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3vw,3rem);line-height:1.05;color:var(--w);}
-.case-num{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:rgba(255,255,255,.05);line-height:.8;}
-
-.case-body{display:grid;grid-template-columns:1fr 1.5fr 1fr;}
-@media(max-width:1024px){.case-body{grid-template-columns:1fr;}}
-.c-col{padding:32px 40px;border-right:1px solid var(--bd);}
-.c-col:last-child{border-right:none;}
-@media(max-width:1024px){.c-col{border-right:none;border-bottom:1px solid var(--bd);}}
-
-.c-label{font-size:.65rem;letter-spacing:.28em;color:var(--w);font-weight:700;text-transform:uppercase;margin-bottom:20px;border-bottom:1px solid var(--bd);padding-bottom:10px;}
-.c-list{list-style:none;}
-.c-list li{margin-bottom:15px;font-size:.85rem;color:var(--wd);line-height:1.72;display:flex;gap:10px;font-weight:300;}
-.c-list li::before{content:'→';color:var(--r);font-weight:700;flex-shrink:0;}
-
-.int-item{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.05);}
-.int-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
-.int-title{display:block;font-weight:700;color:var(--w);font-size:.9rem;margin-bottom:6px;letter-spacing:.04em;}
-.int-text{font-size:.85rem;color:var(--wd);line-height:1.72;font-weight:300;}
-
-/* PRINCIPLE BANNER */
-.principle-banner{padding:30px 40px;background:linear-gradient(90deg,rgba(152,33,33,.15),transparent);border-top:1px solid var(--bd);font-size:1.1rem;font-weight:300;color:var(--w);font-style:italic;text-align:center;}
-.principle-banner em{color:var(--y);font-style:normal;font-weight:700;}
+/* CASE CARDS */
+.cc{background:var(--s1);border-bottom:2px solid rgba(255,184,14,.15);margin-bottom:2px;transition:all .3s;backdrop-filter:blur(8px);}
+.cc:hover{border-bottom-color:var(--y);background:rgba(15,15,15,0.95);box-shadow:0 15px 30px rgba(0,0,0,0.6);}
+.ch{padding:44px 44px 36px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;border-bottom:1px solid rgba(255,255,255,.08);}
+.cco{font-size:.65rem;letter-spacing:.28em;color:var(--y);font-weight:700;text-transform:uppercase;margin-bottom:10px;}
+.ct{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3vw,2.8rem);line-height:1.05;color:var(--w);}
+.cn{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:rgba(255,255,255,.05);line-height:.8;}
+.cb{display:grid;grid-template-columns:1fr 1.5fr 1fr;}
+@media(max-width:1024px){.cb{grid-template-columns:1fr;}}
+.cl{padding:34px 40px;border-right:1px solid rgba(255,255,255,.08);}
+.cl:last-child{border-right:none;}
+@media(max-width:1024px){.cl{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);}}
+.clabel{font-size:.6rem;letter-spacing:.28em;color:var(--y);font-weight:700;text-transform:uppercase;margin-bottom:22px;display:block;}
+.clist{list-style:none;}
+.clist li{margin-bottom:13px;font-size:.85rem;color:var(--wd);line-height:1.72;display:flex;gap:10px;font-weight:300;}
+.clist li::before{content:'→';color:var(--r);font-weight:700;flex-shrink:0;}
+.ii{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.05);}
+.ii:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.it{display:block;font-weight:700;color:var(--w);font-size:.85rem;margin-bottom:5px;letter-spacing:0.5px;}
+.itxt{font-size:.8rem;color:var(--wd);line-height:1.72;font-weight:300;}
+.pb{padding:30px 44px;background:linear-gradient(90deg,rgba(152,33,33,.15),transparent);border-top:1px solid rgba(255,255,255,.05);font-size:1.05rem;font-weight:300;color:var(--w);font-style:italic;text-align:center;}
+.pb em{color:var(--y);font-style:normal;font-weight:700;}
 
 /* RESULTS */
-.r-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
-.r-cell{background:var(--s1);padding:40px;border:1px solid var(--bd);transition:all .3s;text-decoration:none;display:block;}
-.r-cell:hover{border-color:var(--y);background:rgba(255,184,14,.03);transform:translateY(-4px);box-shadow: 0 10px 20px rgba(0,0,0,0.4);}
-
-/* FIXED: Removed Gradient */
-.r-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:var(--w);line-height:1;margin-bottom:10px;}
-.r-label{font-size:.9rem;color:var(--wd);font-weight:300;line-height:1.6;}
-.r-source{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--y);font-weight:700;margin-top:20px;display:block;}
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;}
+.rc{background:var(--s1);padding:40px;border-bottom:2px solid rgba(255,184,14,.12);transition:all .3s;text-decoration:none;display:block;backdrop-filter:blur(8px);}
+.rc:hover{border-bottom-color:var(--y);background:rgba(255,184,14,.02);transform:translateY(-4px);box-shadow:0 10px 20px rgba(0,0,0,0.5);}
+.rn{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;line-height:1;margin-bottom:10px;color:var(--w);}
+.rl{font-size:.85rem;color:var(--wd);font-weight:300;line-height:1.6;}
+.rs{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--y);font-weight:700;margin-top:18px;display:block;}
 
 /* FOOTER */
-.footer{padding:100px 8vw;text-align:center;border-top:1px solid var(--bd);background:#000;position:relative;z-index:1;}
-
-/* FIXED: Removed Gradient */
-.footer h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,6vw,6rem);margin-bottom:20px;color:var(--w);}
-
-.footer-sub{font-size:1.05rem;color:var(--wd);font-weight:300;margin-bottom:50px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.8;}
-.cta-btn{display:inline-block;background:var(--w);color:#000;padding:20px 50px;font-family:'Bebas Neue',sans-serif;font-size:1.6rem;text-decoration:none;letter-spacing:.1em;transition:all .3s;border-radius:2px;}
-.cta-btn:hover{background:var(--y);transform:translateY(-3px);box-shadow:0 12px 24px rgba(255,184,14,.3);}
-
-.socials{margin-top:60px;display:flex;justify-content:center;gap:30px;align-items:center;}
-.social-icon{width:55px;height:55px;border-radius:50%;border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;transition:all .3s;background:var(--s1);text-decoration:none;}
-.social-icon svg{width:22px;height:22px;fill:var(--wd);transition:fill .3s;}
-.social-icon:hover{border-color:var(--y);transform:translateY(-4px);background:rgba(255,184,14,0.05);}
-.social-icon:hover svg{fill:var(--y);}
-.social-wa{font-weight:700;font-size:15px;color:var(--wd);transition:color .3s;}
-.social-icon:hover .social-wa{color:var(--y);}
-
-.footer-copy{margin-top:70px;font-size:.65rem;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;}
+.footer{padding:100px 8vw;text-align:center;border-top:1px solid rgba(255,255,255,.08);background:#000;position:relative;z-index:1;}
+.footer h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,6vw,5.5rem);margin-bottom:18px;}
+.fsub{font-size:1rem;color:var(--wd);font-weight:300;margin-bottom:40px;max-width:550px;margin-left:auto;margin-right:auto;line-height:1.8;}
+.cbtn{display:inline-block;background:var(--w);color:#000;padding:20px 50px;font-family:'Bebas Neue',sans-serif;font-size:1.6rem;text-decoration:none;letter-spacing:.1em;transition:all .3s;border-radius:2px;}
+.cbtn:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(255,184,14,.3);background:var(--y);}
+.soc{margin-top:60px;display:flex;justify-content:center;gap:25px;align-items:center;}
+.si{width:55px;height:55px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;transition:all .3s;background:rgba(8,8,8,.5);text-decoration:none;}
+.si svg{width:22px;height:22px;fill:var(--wd);transition:fill .3s;}
+.si:hover{border-color:var(--y);transform:translateY(-3px);background:rgba(255,184,14,0.05);}
+.si:hover svg{fill:var(--y);}
+.swa{font-weight:700;font-size:14px;color:var(--wd);transition:color .3s;}
+.si:hover .swa{color:var(--y);}
+.fcopy{margin-top:60px;font-size:.65rem;color:rgba(240,240,240,.2);letter-spacing:.2em;text-transform:uppercase;}
 
 /* REVEAL */
 .rv{opacity:0;transform:translateY(30px);transition:opacity .75s ease,transform .75s ease;}
 .rv.on{opacity:1;transform:translateY(0);}
 
 @media(max-width:768px){
-  .hero{padding:150px 6vw 60px;}
   section:not(.hero){padding:80px 6vw;}
+  nav{padding:18px 6vw;}
   .nav-links{display:none;}
+  .hero{padding:130px 6vw 60px;}
   .hero-stats{flex-direction:column;gap:25px;}
   .hstat{border-right:none;padding-right:0;margin-right:0;}
-  .case-header, .c-col{padding:30px;}
-  .principle-banner{padding:25px 30px;}
-  .r-grid, .pillars-grid{grid-template-columns:1fr;}
+  .ch,.cl{padding:30px;}
+  .cb{grid-template-columns:1fr;}
+  .pg{grid-template-columns:1fr;}
+  .rg{grid-template-columns:1fr;}
 }
 </style>
 
@@ -205,26 +192,40 @@ section:not(.hero)::before{content:'';display:block;height:1px;background:linear
 
 <div id="prog"></div>
 
-<nav class="nav" id="nav">
+<nav id="nav">
   <a href="#" class="nav-logo">Sultan<span>.</span>F</a>
   <ul class="nav-links">
-    <li><a href="#s1">Alaan</a></li>
-    <li><a href="#s2">Zid</a></li>
-    <li><a href="#s3">Amazon</a></li>
-    <li><a href="#s4">LG</a></li>
-    <li><a href="#s5">McDonald's</a></li>
-    <li><a href="#s6">Just Taco</a></li>
+    <li><a href="#about">Philosophy</a></li>
+    <li><a href="#pillars">Pillars</a></li>
+    <li><a href="#cases">Dossiers</a></li>
+    <li><a href="#impact">Impact</a></li>
   </ul>
   <a href="https://www.linkedin.com/in/sultanfalahalqahtani1" target="_blank" class="nav-cta">Connect</a>
 </nav>
 
 <section class="hero">
   <div class="hero-sun"></div>
-  <div class="horizon-line"></div>
+  <div class="hero-horizon"></div>
+
+  <svg class="sand" viewBox="0 0 1000 600" preserveAspectRatio="none">
+    <g fill="#FFB80E">
+      <circle r="1"><animateTransform attributeName="transform" type="translate" from="-50 80" to="1050 120" dur="22s" repeatCount="indefinite"/></circle>
+      <circle r="1.5"><animateTransform attributeName="transform" type="translate" from="-80 200" to="1080 230" dur="28s" repeatCount="indefinite"/></circle>
+      <circle r="1"><animateTransform attributeName="transform" type="translate" from="-30 350" to="1030 370" dur="19s" repeatCount="indefinite"/></circle>
+      <circle r="1"><animateTransform attributeName="transform" type="translate" from="200 50" to="1200 80" dur="25s" repeatCount="indefinite"/></circle>
+      <circle r="1.5"><animateTransform attributeName="transform" type="translate" from="-100 450" to="900 480" dur="32s" repeatCount="indefinite"/></circle>
+      <circle r="1"><animateTransform attributeName="transform" type="translate" from="500 150" to="1500 175" dur="21s" repeatCount="indefinite"/></circle>
+      <circle r="1"><animateTransform attributeName="transform" type="translate" from="-60 520" to="940 550" dur="27s" repeatCount="indefinite"/></circle>
+      <circle r="1.5"><animateTransform attributeName="transform" type="translate" from="100 300" to="1100 325" dur="30s" repeatCount="indefinite"/></circle>
+      <circle r="1"><animateTransform attributeName="transform" type="translate" from="700 420" to="1700 445" dur="23s" repeatCount="indefinite"/></circle>
+      <circle r="1"><animateTransform attributeName="transform" type="translate" from="-40 10" to="960 35" dur="18s" repeatCount="indefinite"/></circle>
+    </g>
+  </svg>
+
   <div class="hero-content">
-    <div class="hero-eyebrow">Strategy Case Studies</div>
-    <h1 class="hero-name">SULTAN</h1>
-    <span class="hero-credentials">CCXP® · CXAD · Seven Years. Saudi Arabia's Toughest Markets.</span>
+    <div class="hero-eye">Strategy Case Studies</div>
+    <h1 class="hero-name"><span class="gt">SULTAN ALQAHTANI</span></h1>
+    <span class="hero-cred">CCXP® · CXAD · Seven Years. Saudi Arabia's Toughest Markets.</span>
     <p class="hero-hook">Want to see problems<br>flip into <em>opportunities?</em></p>
     <p class="hero-sub">FinTech · eCommerce · Consumer Tech · F&B — KSA and beyond.</p>
     <div class="hero-stats">
@@ -237,283 +238,178 @@ section:not(.hero)::before{content:'';display:block;height:1px;background:linear
   <div class="scroll-cue"><span>Scroll</span><div class="scroll-line"></div></div>
 </section>
 
+<div class="hdiv"></div>
+
 <section id="about">
   <div class="slabel rv">Who I Am</div>
-  <h2 class="stitle rv">I see patterns<br>others ignore.</h2>
+  <h2 class="stitle rv"><span class="gt">I see patterns<br>others ignore.</span></h2>
   <p class="about-p rv"><em>'Behind quiet churn'</em></p>
   <p class="about-p rv"><em>'Inside unowned touchpoints'</em></p>
   <p class="about-p rv"><em>'Beneath metrics that look fine but aren't'</em></p>
-  <p class="about-tagline rv">Seven years in Saudi's toughest markets. My job: find what's broken, fix it, and make it move revenue.</p>
+  <p class="about-tag rv">Seven years in Saudi's toughest markets. My job: find what's broken, fix it, and make it move revenue.</p>
 </section>
+
+<div class="hdiv"></div>
 
 <section id="pillars">
   <div class="slabel rv">My Strategic Pillars</div>
-  <div class="pillars-grid">
-    <div class="pillar-card rv">
-      <div class="pillar-num">I</div>
-      <h3 class="pillar-h3">Structural Clarity</h3>
-      <p class="pillar-p">Make ambiguity measurable. I break complex chaos into actionable frameworks, ensuring every team member knows exactly how their role drives the outcome.</p>
-    </div>
-    <div class="pillar-card rv" style="transition-delay:.08s">
-      <div class="pillar-num">II</div>
-      <h3 class="pillar-h3">Experience Leverage</h3>
-      <p class="pillar-p">Turn CX into revenue architecture. I map the customer journey not just for satisfaction, but to identify precise moments where friction can be flipped into profit.</p>
-    </div>
-    <div class="pillar-card rv" style="transition-delay:.16s">
-      <div class="pillar-num">III</div>
-      <h3 class="pillar-h3">Cultural Activation</h3>
-      <p class="pillar-p">Align people around execution velocity. Strategy is useless without speed; I foster a culture of proactive ownership to turn insights into implemented results instantly.</p>
-    </div>
+  <div class="pg">
+    <div class="pc rv"><div class="pnum">I</div><h3 class="ph3">Structural Clarity</h3><p class="pp">Make ambiguity measurable. I break complex chaos into actionable frameworks, ensuring every team member knows exactly how their role drives the outcome.</p></div>
+    <div class="pc rv" style="transition-delay:.08s"><div class="pnum">II</div><h3 class="ph3">Experience Leverage</h3><p class="pp">Turn CX into revenue architecture. I map the customer journey not just for satisfaction, but to identify precise moments where friction can be flipped into profit.</p></div>
+    <div class="pc rv" style="transition-delay:.16s"><div class="pnum">III</div><h3 class="ph3">Cultural Activation</h3><p class="pp">Align people around execution velocity. Strategy is useless without speed; I foster a culture of proactive ownership to turn insights into implemented results instantly.</p></div>
   </div>
 </section>
+
+<div class="hdiv"></div>
 
 <section id="cases">
-  <div class="slabel rv">Case Studies</div>
+  <div class="slabel rv">Execution Dossiers</div>
 
-  <div class="case-card rv" id="s1">
-    <div class="case-header">
-      <div><div class="case-company">Alaan Pay · FinTech · KSA</div><div class="case-title">From Chaos to Loyal Clients</div></div>
-      <div class="case-num">01</div>
-    </div>
-    <div class="case-body">
-      <div class="c-col"><div class="c-label">Context</div><ul class="c-list">
-        <li>The only Saudi on ground during market launch.</li>
-        <li>Competitors systematically targeting our warm leads.</li>
-        <li>Clients going cold during the last step of onboarding.</li>
-        <li>The success of expansion hinged on the quality of customer experience.</li>
-      </ul></div>
-      <div class="c-col" style="background:rgba(255,255,255,0.015)"><div class="c-label">Intervention</div>
-        <div class="int-item"><span class="int-title">Emergency Declared</span><span class="int-text">Invited Sales, Marketing, Ops, and Product to an urgent all-hands. Aligned team to boost performance.</span></div>
-        <div class="int-item"><span class="int-title">Localized Little Details</span><span class="int-text">Embedded Saudi Riyal symbol — first fintech to do it. Instant trust and local relevance.</span></div>
-        <div class="int-item"><span class="int-title">Removed Barriers</span><span class="int-text">Mapped friction in onboarding, collabed with Ops to automate gaps. Smoother, faster delivery.</span></div>
-        <div class="int-item"><span class="int-title">Data Warfare</span><span class="int-text">Identified competitor weaknesses in positioning, onboarding, and features. Turned their weaknesses into our advantage.</span></div>
-        <div class="int-item"><span class="int-title">Bold Impactful Initiative</span><span class="int-text">Sent doughnuts & coffee to inactive leads — "still not using our software, you probably need this." Immediate attention and viral engagement.</span></div>
-        <div class="int-item"><span class="int-title">Card Delivery Experience</span><span class="int-text">Automated WhatsApp notifications on delivery. Direct activation link + smart barcodes. Zero friction between received and activated.</span></div>
+  <div class="cc rv" id="s1">
+    <div class="ch"><div><div class="cco">Alaan Pay · FinTech · KSA</div><div class="ct"><span class="gt">From Chaos to Loyal Clients</span></div></div><div class="cn">01</div></div>
+    <div class="cb">
+      <div class="cl"><div class="clabel">Context</div><ul class="clist"><li>The only Saudi on ground during market launch.</li><li>Competitors systematically targeting our warm leads.</li><li>Clients going cold during the last step of onboarding.</li><li>The success of expansion hinged on the quality of customer experience.</li></ul></div>
+      <div class="cl" style="background:rgba(255,255,255,.015)"><div class="clabel">Intervention</div>
+        <div class="ii"><span class="it">Emergency Declared</span><span class="itxt">Invited Sales, Marketing, Ops, and Product to an urgent all-hands. Aligned team to boost performance.</span></div>
+        <div class="ii"><span class="it">Localized Little Details</span><span class="itxt">Embedded Saudi Riyal symbol — first fintech to do it. Instant trust and local relevance.</span></div>
+        <div class="ii"><span class="it">Removed Barriers</span><span class="itxt">Mapped friction in onboarding, collabed with Ops to automate gaps. Smoother, faster delivery.</span></div>
+        <div class="ii"><span class="it">Data Warfare</span><span class="itxt">Identified competitor weaknesses in positioning, onboarding, and features. Turned their weaknesses into our advantage.</span></div>
+        <div class="ii"><span class="it">Bold Impactful Initiative</span><span class="itxt">Sent doughnuts & coffee to inactive leads — "still not using our software, you probably need this." Immediate attention and viral engagement.</span></div>
+        <div class="ii"><span class="it">Card Delivery Experience</span><span class="itxt">Automated WhatsApp notifications on delivery. Direct activation link + smart barcodes. Zero friction between received and activated.</span></div>
       </div>
-      <div class="c-col"><div class="c-label">Outcome</div><ul class="c-list">
-        <li>100% card activation post-automation.</li>
-        <li>WhatsApp automation deployed in under two weeks.</li>
-        <li>57% of targeted leads converted to loyal clients.</li>
-        <li>Viral social proof: unpaid LinkedIn posts amplified brand organically.</li>
-        <li>CEO and GM recognized my ability to bring order to ambiguity.</li>
-      </ul></div>
+      <div class="cl"><div class="clabel">Outcome</div><ul class="clist"><li>100% card activation post-automation.</li><li>WhatsApp automation deployed in under two weeks.</li><li>57% of targeted leads converted to loyal clients.</li><li>Viral social proof: unpaid LinkedIn posts amplified brand organically.</li><li>CEO and GM recognized my ability to bring order to ambiguity.</li></ul></div>
     </div>
-    <div class="principle-banner">"When stakes are high and clarity is low — <em>I thrive.</em>"</div>
+    <div class="pb">"When stakes are high and clarity is low — <em>I thrive.</em>"</div>
   </div>
 
-  <div class="case-card rv" id="s2">
-    <div class="case-header">
-      <div><div class="case-company">Zid Platform · eCommerce · KSA</div><div class="case-title">Finding Where Friction Hides</div></div>
-      <div class="case-num">02</div>
-    </div>
-    <div class="case-body">
-      <div class="c-col"><div class="c-label">Context</div><ul class="c-list">
-        <li>Merchants churning without a clear reason why.</li>
-        <li>Pain points not showing in reports — the silence was the problem.</li>
-        <li>Support overwhelmed but nobody could pinpoint the source.</li>
-      </ul></div>
-      <div class="c-col" style="background:rgba(255,255,255,0.015)"><div class="c-label">Intervention</div>
-        <div class="int-item"><span class="int-title">Mapped The Journey</span><span class="int-text">Used journey heatmaps and thematic VOC analysis to expose friction nobody was tracking.</span></div>
-        <div class="int-item"><span class="int-title">Unlocked Amazon Integration</span><span class="int-text">Identified it as the highest-impact move for merchant sales and NPS. Pushed it forward fast.</span></div>
-        <div class="int-item"><span class="int-title">Rebuilt Escalation Architecture</span><span class="int-text">Replaced a reactive system with structured escalation models built on merchant behavior patterns.</span></div>
+  <div class="hdiv"></div>
+
+  <div class="cc rv" id="s2">
+    <div class="ch"><div><div class="cco">Zid Platform · eCommerce · KSA</div><div class="ct"><span class="gt">Finding Where Friction Hides</span></div></div><div class="cn">02</div></div>
+    <div class="cb">
+      <div class="cl"><div class="clabel">Context</div><ul class="clist"><li>Merchants churning without a clear reason why.</li><li>Pain points not showing in reports — the silence was the problem.</li><li>Support overwhelmed but nobody could pinpoint the source.</li></ul></div>
+      <div class="cl" style="background:rgba(255,255,255,.015)"><div class="clabel">Intervention</div>
+        <div class="ii"><span class="it">Mapped The Journey</span><span class="itxt">Used journey heatmaps and thematic VOC analysis to expose friction nobody was tracking.</span></div>
+        <div class="ii"><span class="it">Unlocked Amazon Integration</span><span class="itxt">Identified it as the highest-impact move for merchant sales and NPS. Pushed it forward fast.</span></div>
+        <div class="ii"><span class="it">Rebuilt Escalation Architecture</span><span class="itxt">Replaced a reactive system with structured escalation models built on merchant behavior patterns.</span></div>
       </div>
-      <div class="c-col"><div class="c-label">Outcome</div><ul class="c-list">
-        <li>−17% merchant churn in under 45 days.</li>
-        <li>NPS uplift following Amazon integration rollout.</li>
-        <li>Support shifted from reactive firefighting to predictive intervention.</li>
-      </ul></div>
+      <div class="cl"><div class="clabel">Outcome</div><ul class="clist"><li>−17% merchant churn in under 45 days.</li><li>NPS uplift following Amazon integration rollout.</li><li>Support shifted from reactive firefighting to predictive intervention.</li></ul></div>
     </div>
-    <div class="principle-banner">"I look where friction hides — <em>in silence, not just in complaints.</em>"</div>
+    <div class="pb">"I look where friction hides — <em>in silence, not just in complaints.</em>"</div>
   </div>
 
-  <div class="case-card rv" id="s3">
-    <div class="case-header">
-      <div><div class="case-company">Amazon · Global Ops · KSA</div><div class="case-title">Moving the Unmovable</div></div>
-      <div class="case-num">03</div>
-    </div>
-    <div class="case-body">
-      <div class="c-col"><div class="c-label">Context</div><ul class="c-list">
-        <li>Morale tanking silently across the floor.</li>
-        <li>Dense guides customers weren't reading — tickets piling up.</li>
-        <li>Floor-level suggestions buried before reaching leadership.</li>
-      </ul></div>
-      <div class="c-col" style="background:rgba(255,255,255,0.015)"><div class="c-label">Intervention</div>
-        <div class="int-item"><span class="int-title">Killed The Guides</span><span class="int-text">Replaced dense docs with short instructional videos. Customers stopped needing support for common issues.</span></div>
-        <div class="int-item"><span class="int-title">RCA Workshops</span><span class="int-text">Ran root cause analysis on the floor. Exposed systemic defects, gave teams a structural language for problems.</span></div>
-        <div class="int-item"><span class="int-title">Built a Proactive Playbook</span><span class="int-text">Mapped defect trends across high-impact SKUs. Teams could intervene before issues reached customers.</span></div>
-        <div class="int-item"><span class="int-title">Advised the Regional Director</span><span class="int-text">Launched feedback loops and cultural recognition programs. One recommendation approved and shipped.</span></div>
+  <div class="hdiv"></div>
+
+  <div class="cc rv" id="s3">
+    <div class="ch"><div><div class="cco">Amazon · Global Ops · KSA</div><div class="ct"><span class="gt">Moving the Unmovable</span></div></div><div class="cn">03</div></div>
+    <div class="cb">
+      <div class="cl"><div class="clabel">Context</div><ul class="clist"><li>Morale tanking silently across the floor.</li><li>Dense guides customers weren't reading — tickets piling up.</li><li>Floor-level suggestions buried before reaching leadership.</li></ul></div>
+      <div class="cl" style="background:rgba(255,255,255,.015)"><div class="clabel">Intervention</div>
+        <div class="ii"><span class="it">Killed The Guides</span><span class="itxt">Replaced dense docs with short instructional videos. Customers stopped needing support for common issues.</span></div>
+        <div class="ii"><span class="it">RCA Workshops</span><span class="itxt">Ran root cause analysis on the floor. Exposed systemic defects, gave teams a structural language for problems.</span></div>
+        <div class="ii"><span class="it">Built a Proactive Playbook</span><span class="itxt">Mapped defect trends across high-impact SKUs. Teams could intervene before issues reached customers.</span></div>
+        <div class="ii"><span class="it">Advised the Regional Director</span><span class="itxt">Launched feedback loops and cultural recognition programs. One recommendation approved and shipped.</span></div>
       </div>
-      <div class="c-col"><div class="c-label">Outcome</div><ul class="c-list">
-        <li>−25% issue resolution time post-RCA workshops.</li>
-        <li>2 out of 2 proposals — both approved and shipped.</li>
-        <li>Team morale visibly shifted across the floor.</li>
-      </ul></div>
+      <div class="cl"><div class="clabel">Outcome</div><ul class="clist"><li>−25% issue resolution time post-RCA workshops.</li><li>2 out of 2 proposals — both approved and shipped.</li><li>Team morale visibly shifted across the floor.</li></ul></div>
     </div>
-    <div class="principle-banner">"If people won't read, <em>build experiences they don't need to read.</em>"</div>
+    <div class="pb">"If people won't read, <em>build experiences they don't need to read.</em>"</div>
   </div>
 
-  <div class="case-card rv" id="s4">
-    <div class="case-header">
-      <div><div class="case-company">LG Electronics · Consumer Tech · KSA</div><div class="case-title">When Numbers Speak Louder Than Hesitation</div></div>
-      <div class="case-num">04</div>
-    </div>
-    <div class="case-body">
-      <div class="c-col"><div class="c-label">Context</div><ul class="c-list">
-        <li>High operational costs, uncertain market appetite.</li>
-        <li>Product teams stuck in indecision — no localized data.</li>
-        <li>A product with real potential sitting in limbo.</li>
-      </ul></div>
-      <div class="c-col" style="background:rgba(255,255,255,0.015)"><div class="c-label">Intervention</div>
-        <div class="int-item"><span class="int-title">Built a Market-Sensing Dashboard</span><span class="int-text">Mapped regional demand potential vs operational investment. Turned hesitation into a structured decision.</span></div>
-        <div class="int-item"><span class="int-title">Went Deep on KSA Context</span><span class="int-text">Integrated demographic fit, purchasing behavior, smart home adoption, and remote working trends.</span></div>
-        <div class="int-item"><span class="int-title">Connected CX to Supply Chain</span><span class="int-text">Bridged customer interest signals from sales, support, and retail ops into inventory and logistics planning.</span></div>
+  <div class="hdiv"></div>
+
+  <div class="cc rv" id="s4">
+    <div class="ch"><div><div class="cco">LG Electronics · Consumer Tech · KSA</div><div class="ct"><span class="gt">When Numbers Speak Louder Than Hesitation</span></div></div><div class="cn">04</div></div>
+    <div class="cb">
+      <div class="cl"><div class="clabel">Context</div><ul class="clist"><li>High operational costs, uncertain market appetite.</li><li>Product teams stuck in indecision — no localized data.</li><li>A product with real potential sitting in limbo.</li></ul></div>
+      <div class="cl" style="background:rgba(255,255,255,.015)"><div class="clabel">Intervention</div>
+        <div class="ii"><span class="it">Built a Market-Sensing Dashboard</span><span class="itxt">Mapped regional demand potential vs operational investment. Turned hesitation into a structured decision.</span></div>
+        <div class="ii"><span class="it">Went Deep on KSA Context</span><span class="itxt">Integrated demographic fit, purchasing behavior, smart home adoption, and remote working trends.</span></div>
+        <div class="ii"><span class="it">Connected CX to Supply Chain</span><span class="itxt">Bridged customer interest signals from sales, support, and retail ops into inventory and logistics planning.</span></div>
       </div>
-      <div class="c-col"><div class="c-label">Outcome</div><ul class="c-list">
-        <li>Launch greenlit — hesitation replaced by data-backed confidence.</li>
-        <li>Dashboard confirmed KSA was the perfect market for the product.</li>
-        <li>Became known as the person who weaponizes insight into decisions.</li>
-      </ul></div>
+      <div class="cl"><div class="clabel">Outcome</div><ul class="clist"><li>Launch greenlit — hesitation replaced by data-backed confidence.</li><li>Dashboard confirmed KSA was the perfect market for the product.</li><li>Became known as the person who weaponizes insight into decisions.</li></ul></div>
     </div>
-    <div class="principle-banner">"CX doesn't stop at satisfaction scores — <em>it drives what lands on the shelf.</em>"</div>
+    <div class="pb">"CX doesn't stop at satisfaction scores — <em>it drives what lands on the shelf.</em>"</div>
   </div>
 
-  <div class="case-card rv" id="s5">
-    <div class="case-header">
-      <div><div class="case-company">McDonald's USA · Operations · Part-Time</div><div class="case-title">Systems Thinking at 18</div></div>
-      <div class="case-num">05</div>
-    </div>
-    <div class="case-body">
-      <div class="c-col"><div class="c-label">Context</div><ul class="c-list">
-        <li>KPIs looked green. Metrics were fine. Something was still off.</li>
-        <li>CRM specialists each had unspoken strengths nobody was using.</li>
-        <li>Every call routed randomly — erasing individual edge entirely.</li>
-      </ul></div>
-      <div class="c-col" style="background:rgba(255,255,255,0.015)"><div class="c-label">Intervention</div>
-        <div class="int-item"><span class="int-title">Shadow Investigation</span><span class="int-text">Observed specialist behavior patterns across call types. Mapped who was actually best at what.</span></div>
-        <div class="int-item"><span class="int-title">Skills-Mapping Matrix</span><span class="int-text">Designed a routing system matching call types to specialist strengths. No software. No budget. Pure intelligence optimization.</span></div>
+  <div class="hdiv"></div>
+
+  <div class="cc rv" id="s5">
+    <div class="ch"><div><div class="cco">McDonald's USA · Operations · Part-Time</div><div class="ct"><span class="gt">Systems Thinking at 18</span></div></div><div class="cn">05</div></div>
+    <div class="cb">
+      <div class="cl"><div class="clabel">Context</div><ul class="clist"><li>KPIs looked green. Metrics were fine. Something was still off.</li><li>CRM specialists each had unspoken strengths nobody was using.</li><li>Every call routed randomly — erasing individual edge entirely.</li></ul></div>
+      <div class="cl" style="background:rgba(255,255,255,.015)"><div class="clabel">Intervention</div>
+        <div class="ii"><span class="it">Shadow Investigation</span><span class="itxt">Observed specialist behavior patterns across call types. Mapped who was actually best at what.</span></div>
+        <div class="ii"><span class="it">Skills-Mapping Matrix</span><span class="itxt">Designed a routing system matching call types to specialist strengths. No software. No budget. Pure intelligence optimization.</span></div>
       </div>
-      <div class="c-col"><div class="c-label">Outcome</div><ul class="c-list">
-        <li>Customer satisfaction rose post-implementation.</li>
-        <li>Resolution time dropped as specialists handled their strongest case types.</li>
-        <li>Internal morale surged — people felt seen for what they were actually good at.</li>
-      </ul></div>
+      <div class="cl"><div class="clabel">Outcome</div><ul class="clist"><li>Customer satisfaction rose post-implementation.</li><li>Resolution time dropped as specialists handled their strongest case types.</li><li>Internal morale surged — people felt seen for what they were actually good at.</li></ul></div>
     </div>
-    <div class="principle-banner">"I don't need permission to fix what's broken. <em>I see it, I act, I improve.</em>"</div>
+    <div class="pb">"I don't need permission to fix what's broken. <em>I see it, I act, I improve.</em>"</div>
   </div>
 
-  <div class="case-card rv" id="s6">
-    <div class="case-header">
-      <div><div class="case-company">Just Taco · F&B · KSA · Pro Bono</div><div class="case-title">Free Work. 400% Growth. No Apologies.</div></div>
-      <div class="case-num">06</div>
-    </div>
-    <div class="case-body">
-      <div class="c-col"><div class="c-label">Context</div><ul class="c-list">
-        <li>Small local brand stuck at 8K SAR daily revenue.</li>
-        <li>Invisible on social. No budget. No strategy.</li>
-        <li>No contract. No fees. Just belief.</li>
-      </ul></div>
-      <div class="c-col" style="background:rgba(255,255,255,0.015)"><div class="c-label">Intervention</div>
-        <div class="int-item"><span class="int-title">Reframed The Product</span><span class="int-text">Stopped selling a taco. Started selling an identity. Gave the brand cultural personality.</span></div>
-        <div class="int-item"><span class="int-title">Zero-Budget UGC Campaign</span><span class="int-text">Built content strategy around storytelling, humor, and street-level intimacy. Customers became creators.</span></div>
-        <div class="int-item"><span class="int-title">Built Community Not Audience</span><span class="int-text">Engineered advocates who made the brand part of their personal identity. Organic, sustained, self-growing.</span></div>
-      </div>
-      <div class="c-col"><div class="c-label">Outcome</div><ul class="c-list">
-        <li>400% revenue growth — 8K SAR to 46K SAR daily.</li>
-        <li>Brand became a local legend with sustained organic engagement.</li>
-        <li>Zero budget. Full results.</li>
-      </ul></div>
-    </div>
-    <div class="principle-banner">"I don't need a contract to deliver excellence. <em>If I believe — I go all in.</em>"</div>
-  </div>
+  <div class="hdiv"></div>
 
+  <div class="cc rv" id="s6">
+    <div class="ch"><div><div class="cco">Just Taco · F&B · KSA · Pro Bono</div><div class="ct"><span class="gt">Free Work. 400% Growth. No Apologies.</span></div></div><div class="cn">06</div></div>
+    <div class="cb">
+      <div class="cl"><div class="clabel">Context</div><ul class="clist"><li>Small local brand stuck at 8K SAR daily revenue.</li><li>Invisible on social. No budget. No strategy.</li><li>No contract. No fees. Just belief.</li></ul></div>
+      <div class="cl" style="background:rgba(255,255,255,.015)"><div class="clabel">Intervention</div>
+        <div class="ii"><span class="it">Reframed The Product</span><span class="itxt">Stopped selling a taco. Started selling an identity. Gave the brand cultural personality.</span></div>
+        <div class="ii"><span class="it">Zero-Budget UGC Campaign</span><span class="itxt">Built content strategy around storytelling, humor, and street-level intimacy. Customers became creators.</span></div>
+        <div class="ii"><span class="it">Built Community Not Audience</span><span class="itxt">Engineered advocates who made the brand part of their personal identity. Organic, sustained, self-growing.</span></div>
+      </div>
+      <div class="cl"><div class="clabel">Outcome</div><ul class="clist"><li>400% revenue growth — 8K SAR to 46K SAR daily.</li><li>Brand became a local legend with sustained organic engagement.</li><li>Zero budget. Full results.</li></ul></div>
+    </div>
+    <div class="pb">"I don't need a contract to deliver excellence. <em>If I believe — I go all in.</em>"</div>
+  </div>
 </section>
 
-<section id="results" style="padding-bottom:120px;">
+<div class="hdiv"></div>
+
+<section id="impact">
   <div class="slabel rv">By The Numbers</div>
-  <h2 class="stitle rv">Impact Metrics.</h2>
-  <div class="r-grid">
-    <a href="#s1" class="r-cell rv">
-      <div class="r-num counter" data-target="100">0</div>
-      <div class="r-label">Card activation rate</div>
-      <span class="r-source">Alaan Pay</span>
-    </a>
-    <a href="#s6" class="r-cell rv" style="transition-delay:.06s">
-      <div class="r-num counter" data-target="400">0</div>
-      <div class="r-label">Revenue growth, zero budget</div>
-      <span class="r-source">Just Taco</span>
-    </a>
-    <a href="#s2" class="r-cell rv" style="transition-delay:.12s">
-      <div class="r-num counter" data-target="-17">0</div>
-      <div class="r-label">Merchant churn in 45 days</div>
-      <span class="r-source">Zid Platform</span>
-    </a>
-    <a href="#s3" class="r-cell rv" style="transition-delay:.18s">
-      <div class="r-num counter" data-target="-25">0</div>
-      <div class="r-label">Issue resolution time</div>
-      <span class="r-source">Amazon</span>
-    </a>
+  <h2 class="stitle rv"><span class="gt">Impact Metrics.</span></h2>
+  <div class="rg">
+    <a href="#s1" class="rc rv"><div class="rn counter" data-target="100">0</div><div class="rl">Card activation rate achieved post-automation.</div><span class="rs">Alaan Pay</span></a>
+    <a href="#s6" class="rc rv" style="transition-delay:.06s"><div class="rn counter" data-target="400">0</div><div class="rl">Revenue growth, zero budget.</div><span class="rs">Just Taco</span></a>
+    <a href="#s2" class="rc rv" style="transition-delay:.12s"><div class="rn counter" data-target="-17">0</div><div class="rl">Merchant churn halted in 45 days.</div><span class="rs">Zid Platform</span></a>
+    <a href="#s3" class="rc rv" style="transition-delay:.18s"><div class="rn counter" data-target="-25">0</div><div class="rl">Issue resolution time via RCA.</div><span class="rs">Amazon</span></a>
   </div>
 </section>
+
+<div class="hdiv"></div>
 
 <footer class="footer">
   <div class="slabel rv" style="justify-content:center">Start a Conversation</div>
-  <h2 class="rv">Deploy Strategy.</h2>
-  <p class="footer-sub rv">Seven years in Saudi's toughest markets. Let's talk about the friction costing you revenue today.</p>
-  <a href="mailto:sultanfq.career@gmail.com" class="cta-btn rv">INITIATE CONTACT</a>
-  <div class="socials rv">
-    <a href="https://wa.me/966599061969" target="_blank" class="social-icon" title="WhatsApp"><span class="social-wa">WA</span></a>
-    <a href="https://www.linkedin.com/in/sultanfalahalqahtani1" target="_blank" class="social-icon" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-    <a href="mailto:sultanfq.career@gmail.com" class="social-icon" title="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
-    <a href="tel:+966599061969" class="social-icon" title="Call"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+  <h2 class="rv"><span class="gt">Deploy Strategy.</span></h2>
+  <p class="fsub rv">Seven years in Saudi's toughest markets. Let's talk about the friction costing you revenue today.</p>
+  <a href="mailto:sultanfq.career@gmail.com" class="cbtn rv">INITIATE CONTACT</a>
+  <div class="soc rv">
+    <a href="https://wa.me/966599061969" target="_blank" class="si"><span class="swa">WA</span></a>
+    <a href="https://www.linkedin.com/in/sultanfalahalqahtani1" target="_blank" class="si"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+    <a href="mailto:sultanfq.career@gmail.com" class="si"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+    <a href="tel:+966599061969" class="si"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
   </div>
-  <p class="footer-copy">Sultan Alqahtani © 2026 · CX Strategist · Built to move markets</p>
+  <p class="fcopy">Sultan Alqahtani © 2026 · CX Strategist · Built to move markets</p>
 </footer>
 
 <script>
-// GEMINI STARS ENGINE
-const canvas=document.getElementById('stars');
-const ctx=canvas.getContext('2d');
-let stars=[];
-function resize(){
-  canvas.width=window.innerWidth;
-  canvas.height=window.innerHeight;
-  stars=[];
-  for(let i=0;i<150;i++){
-    stars.push({
-      x:Math.random()*canvas.width,
-      y:Math.random()*canvas.height,
-      r:Math.random()*1.5+0.2,
-      o:Math.random()*0.5+0.1,
-      s:Math.random()*0.4+0.1,
-      d:Math.random()*Math.PI*2
-    });
-  }
-}
-function drawStars(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  stars.forEach(s=>{
-    s.d+=0.005;
-    s.o=(0.3+0.4*Math.sin(s.d));
-    ctx.beginPath();
-    ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(255,184,14,${s.o})`; // Subtle yellow/gold tint
-    ctx.fill();
-  });
-}
-window.addEventListener('resize',resize);
-resize();
-function loop(){drawStars();requestAnimationFrame(loop);}
-loop();
+// CANVAS STARS — desert night sky (Gemini Engine)
+const cv=document.getElementById('stars'),cx=cv.getContext('2d');
+let st=[];
+function rsz(){cv.width=window.innerWidth;cv.height=window.innerHeight;st=[];for(let i=0;i<200;i++)st.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*.9+.15,p:Math.random()*Math.PI*2,sp:Math.random()*.005+.002});}
+function drs(){cx.clearRect(0,0,cv.width,cv.height);st.forEach(s=>{s.p+=s.sp;const o=.15+.45*Math.sin(s.p);cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);cx.fillStyle=`rgba(255,210,100,${o})`;cx.fill();});}
+window.addEventListener('resize',rsz);rsz();
+(function loop(){drs();requestAnimationFrame(loop);})();
 
 // PROGRESS
-const prog=document.getElementById('prog');
-window.addEventListener('scroll',()=>{prog.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';});
+const pr=document.getElementById('prog');
+window.addEventListener('scroll',()=>{pr.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';});
 
 // NAV
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>50));
+const nv=document.getElementById('nav');
+window.addEventListener('scroll',()=>nv.classList.toggle('scrolled',scrollY>50));
 
-// REVEAL & COUNTERS
+// REVEAL & COUNTERS ENGINE
 let countersTriggered = new Set();
 function startCounters(container) {
   const counters = container.querySelectorAll('.counter');
@@ -542,14 +438,14 @@ function startCounters(container) {
   });
 }
 
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('on');
-      if(e.target.querySelector('.counter') || e.target.classList.contains('counter')) {
-        startCounters(e.target);
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{
+    if(x.isIntersecting){
+      x.target.classList.add('on');
+      if(x.target.querySelector('.counter') || x.target.classList.contains('counter')) {
+        startCounters(x.target);
       }
-      obs.unobserve(e.target);
+      obs.unobserve(x.target);
     }
   });
 },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
